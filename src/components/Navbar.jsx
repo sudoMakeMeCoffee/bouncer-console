@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import useSignupStore from "../store/useSignupStore";
 
 const Navbar = () => {
+
+     const openSignup = useSignupStore((state) => state.openSignup);
+
   return (
     <nav className="w-full h-[64px] fixed top-0 z-50">
       <div className="wrapper h-full flex items-center justify-between">
@@ -18,9 +22,9 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
             <Link to={"/login"} className="text-sm font-medium">Log in</Link>
        
-            <Link to={"/signup"} className="btn-primary btn-md">
+            <button onClick={openSignup}  className="btn-primary btn-md">
                 Sign Up
-            </Link>
+            </button>
         </div>
       </div>
     </nav>
