@@ -2,18 +2,11 @@ import React from "react";
 import { CgClose } from "react-icons/cg";
 import { FcGoogle } from "react-icons/fc";
 import { GrGithub } from "react-icons/gr";
-import { Link } from "react-router-dom";
 import useAuthFormStore from "../store/useAuthFormStore";
+import { RiErrorWarningLine } from "react-icons/ri";
 
 const LoginForm = () => {
-  const {
-    openSignup,
-    openLogin,
-    isSignupOpen,
-    isLoginOpen,
-    closeSignup,
-    closeLogin,
-  } = useAuthFormStore();
+  const { openSignup, closeLogin } = useAuthFormStore();
 
   return (
     <form
@@ -25,6 +18,7 @@ const LoginForm = () => {
         <CgClose className="cursor-pointer" onClick={closeLogin} />
       </div>
 
+      
       <div className="flex items-center gap-4">
         <div className="w-full text-xs bg-transparent border  border-gray-700 rounded-md px-3 py-3 flex items-center justify-center gap-2 cursor-pointer">
           <FcGoogle />
@@ -37,18 +31,21 @@ const LoginForm = () => {
         </div>
       </div>
 
-
+      <div className="flex items-center gap-2 text-[#ff3535] bg-[#ffabab] rounded-md px-3 py-3">
+        <RiErrorWarningLine />
+        <p className="text-xs">Invalid Credentials</p>
+      </div>
       <input
         type="text"
         className="text-xs font-normal bg-transparent border  border-gray-700 rounded-md px-3 py-3 focus:outline-none focus:border-primary transition-colors"
         placeholder="Email or Username"
       />
-
       <input
         type="password"
         className="text-xs font-normal bg-transparent border border-gray-700 rounded-md px-3 py-3 focus:outline-none focus:border-primary transition-colors"
         placeholder="Password"
       />
+
       <button className="text-xs bg-primary rounded-md px-3 py-3 focus:outline-none transition-colors">
         Log in
       </button>
@@ -56,21 +53,18 @@ const LoginForm = () => {
       <div className="flex-grow border-t border-gray-700 mt-4"></div>
 
       <p className="text-xs text-center  text-gray-500">
-        
-        <button className="text-[#00B2FF] underline">
-          Forgot password?
-        </button>
+        <button className="text-[#00B2FF] underline">Forgot password?</button>
       </p>
 
       <p className="text-xs text-center  text-gray-500">
         Don't have an account?{" "}
-        <button className="text-[#00B2FF] underline" onClick={() => openSignup()}>
+        <button
+          className="text-[#00B2FF] underline"
+          onClick={() => openSignup()}
+        >
           Sign up
         </button>
       </p>
-
-    
-
     </form>
   );
 };

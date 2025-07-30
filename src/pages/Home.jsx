@@ -28,7 +28,9 @@ const Home = () => {
         <div className="absolute bottom-0 w-full  gradient-bg h-[400px]"></div>
       </div>
 
-      <div className="bg-secondary h-[400px]"></div>
+      <div className="bg-secondary h-[400px]">
+        Section
+      </div>
     </>
   );
 };

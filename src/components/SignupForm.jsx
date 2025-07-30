@@ -2,18 +2,11 @@ import React from "react";
 import { CgClose } from "react-icons/cg";
 import { FcGoogle } from "react-icons/fc";
 import { GrGithub } from "react-icons/gr";
-import { Link } from "react-router-dom";
 import useAuthFormStore from "../store/useAuthFormStore";
+import { RiErrorWarningLine } from "react-icons/ri";
 
 const SignupForm = () => {
-  const {
-    openSignup,
-    openLogin,
-    isSignupOpen,
-    isLoginOpen,
-    closeSignup,
-    closeLogin,
-  } = useAuthFormStore();
+  const { openLogin, closeSignup } = useAuthFormStore();
 
   return (
     <form
@@ -43,22 +36,35 @@ const SignupForm = () => {
         <div className="flex-grow border-t border-gray-700"></div>
       </div>
 
-      <input
-        type="text"
-        className="text-xs font-normal bg-transparent border  border-gray-700 rounded-md px-3 py-3 focus:outline-none focus:border-primary transition-colors"
-        placeholder="Username"
-      />
-      <input
-        type="email"
-        className="text-xs font-normal bg-transparent border  border-gray-700 rounded-md px-3 py-3 focus:outline-none focus:border-primary transition-colors"
-        placeholder="Email"
-      />
+      {/* <div className="flex items-center gap-2 text-[#ff3535] bg-[#ffabab] rounded-md px-3 py-3">
+        <RiErrorWarningLine />
+        <p className="text-xs">Invalid Credentials</p>
+      </div> */}
 
-      <input
-        type="password"
-        className="text-xs font-normal bg-transparent border border-gray-700 rounded-md px-3 py-3 focus:outline-none focus:border-primary transition-colors"
-        placeholder="Password"
-      />
+      <div className="flex flex-col gap-2">
+        <input
+          type="text"
+          className="text-xs font-normal bg-transparent border  border-gray-700 rounded-md px-3 py-3 focus:outline-none focus:border-primary transition-colors"
+          placeholder="Username"
+        />
+        <span className="text-xs text-red-500">Username is taken.</span>
+      </div>
+      <div className="flex flex-col gap-2">
+        <input
+          type="email"
+          className="text-xs font-normal bg-transparent border  border-gray-700 rounded-md px-3 py-3 focus:outline-none focus:border-primary transition-colors"
+          placeholder="Email"
+        />
+        <span className="text-xs text-red-500">Email already exists.</span>
+      </div>
+      <div className="flex flex-col gap-2">
+        <input
+          type="password"
+          className="text-xs font-normal bg-transparent border border-gray-700 rounded-md px-3 py-3 focus:outline-none focus:border-primary transition-colors"
+          placeholder="Password"
+        />
+        <span className="text-xs text-red-500">Password must have at least 8 characters.</span>
+      </div>
       <button className="text-xs bg-primary rounded-md px-3 py-3 focus:outline-none transition-colors">
         Sign Up
       </button>
@@ -67,12 +73,15 @@ const SignupForm = () => {
 
       <p className="text-xs text-center  text-gray-500">
         Already have an account?{" "}
-        <button className="text-[#00B2FF] underline" onClick={() => openLogin()}>
+        <button
+          className="text-[#00B2FF] underline"
+          onClick={() => openLogin()}
+        >
           Log in
         </button>
       </p>
 
-      <p className="text-[10px] text-gray-500">
+      <p className="text-[10px] text-gray-500 text-center">
         By signing up, you agree to our{" "}
         <span className="text-[#00b3ff86] cursor-pointer">
           Terms of Service
