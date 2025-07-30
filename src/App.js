@@ -1,21 +1,23 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import logo from "./logo.svg";
 import "./App.css";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import { useEffect, useState } from "react";
 import Signup from "./pages/Signup";
 import SignupForm from "./components/SignupForm";
-import useSignupStore from "./store/useSignupStore";
+import useAuthFormStore from "./store/useAuthFormStore";
+import LoginForm from "./components/LoginForm";
 
 function App() {
+    const { openSignup, openLogin, isSignupOpen, isLoginOpen, closeSignup, closeLogin } = useAuthFormStore();
+
+
   useEffect(() => {
     document.documentElement.classList.add("dark"); // toggle dynamically if needed
   }, []);
-  const { isSignupOpen, closeSignup } = useSignupStore();
 
   useEffect(() => {
-    if (isSignupOpen) {
+    if (isSignupOpen || isLoginOpen) {
       const scrollY = window.scrollY;
       document.body.style.position = "fixed";
       document.body.style.top = `-${scrollY}px`;
@@ -29,12 +31,11 @@ function App() {
       document.body.style.overflow = "";
       window.scrollTo(0, parseInt(scrollY || "0") * -1);
     }
-  }, [isSignupOpen]);
+  }, [isSignupOpen, isLoginOpen]);
 
   return (
     <div className="bg-background dark:bg-secondary text-secondary dark:text-background min-h-screen relative">
       <Router>
-        {/* Main background content */}
         <div
           className={`transition-all duration-300 ${
             isSignupOpen ? "blur-sm pointer-events-none opacity-50" : ""
@@ -55,6 +56,20 @@ function App() {
               onClick={(e) => e.stopPropagation()}
             >
               <SignupForm />
+            </div>
+          </div>
+        )}
+
+        {isLoginOpen && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-md"
+            onClick={closeLogin}
+          >
+            <div
+              className="bg-white dark:bg-secondary text-black dark:text-white p-6 rounded-lg w-full max-w-md mx-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <LoginForm />
             </div>
           </div>
         )}

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import useSignupStore from "../store/useSignupStore";
+import useAuthFormStore from "../store/useAuthFormStore";
 import { HiBars2 } from "react-icons/hi2";
 
 const Navbar = () => {
-  const openSignup = useSignupStore((state) => state.openSignup);
+  const { openSignup, openLogin, isSignupOpen, isLoginOpen, closeSignup, closeLogin } = useAuthFormStore();
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -13,10 +13,8 @@ const Navbar = () => {
       const currentScrollY = window.scrollY;
 
       if (currentScrollY > lastScrollY && currentScrollY > 64) {
-        // scrolling down
         setShowNavbar(false);
       } else {
-        // scrolling up
         setShowNavbar(true);
       }
 
@@ -46,11 +44,11 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-5">
-          <Link to={"/login"} className="text-xs font-medium  sm:text-sm">
+          <button onClick={() => openLogin()} className="text-xs font-medium  sm:text-sm">
             Log in
-          </Link>
+          </button>
 
-          <button onClick={openSignup} className="btn-primary btn-md">
+          <button onClick={() => openSignup()} className="btn-primary btn-md">
             Sign Up
           </button>
 

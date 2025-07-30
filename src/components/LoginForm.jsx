@@ -5,7 +5,7 @@ import { GrGithub } from "react-icons/gr";
 import { Link } from "react-router-dom";
 import useAuthFormStore from "../store/useAuthFormStore";
 
-const SignupForm = () => {
+const LoginForm = () => {
   const {
     openSignup,
     openLogin,
@@ -21,8 +21,8 @@ const SignupForm = () => {
      p-8 flex flex-col gap-4 rounded-md"
     >
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-md">Signup with</h1>
-        <CgClose className="cursor-pointer" onClick={closeSignup} />
+        <h1 className="text-md">Login with</h1>
+        <CgClose className="cursor-pointer" onClick={closeLogin} />
       </div>
 
       <div className="flex items-center gap-4">
@@ -37,21 +37,11 @@ const SignupForm = () => {
         </div>
       </div>
 
-      <div className="flex items-center gap-2 ">
-        <div className="flex-grow border-t border-gray-700"></div>
-        <span className="text-xs text-gray-500">or</span>
-        <div className="flex-grow border-t border-gray-700"></div>
-      </div>
 
       <input
         type="text"
         className="text-xs font-normal bg-transparent border  border-gray-700 rounded-md px-3 py-3 focus:outline-none focus:border-primary transition-colors"
-        placeholder="Username"
-      />
-      <input
-        type="email"
-        className="text-xs font-normal bg-transparent border  border-gray-700 rounded-md px-3 py-3 focus:outline-none focus:border-primary transition-colors"
-        placeholder="Email"
+        placeholder="Email or Username"
       />
 
       <input
@@ -60,28 +50,29 @@ const SignupForm = () => {
         placeholder="Password"
       />
       <button className="text-xs bg-primary rounded-md px-3 py-3 focus:outline-none transition-colors">
-        Sign Up
+        Log in
       </button>
 
       <div className="flex-grow border-t border-gray-700 mt-4"></div>
 
       <p className="text-xs text-center  text-gray-500">
-        Already have an account?{" "}
-        <button className="text-[#00B2FF] underline" onClick={() => openLogin()}>
-          Log in
+        
+        <button className="text-[#00B2FF] underline">
+          Forgot password?
         </button>
       </p>
 
-      <p className="text-[10px] text-gray-500">
-        By signing up, you agree to our{" "}
-        <span className="text-[#00b3ff86] cursor-pointer">
-          Terms of Service
-        </span>{" "}
-        and{" "}
-        <span className="text-[#00b3ff86] cursor-pointer">Privacy Policy</span>.
+      <p className="text-xs text-center  text-gray-500">
+        Don't have an account?{" "}
+        <button className="text-[#00B2FF] underline" onClick={() => openSignup()}>
+          Sign up
+        </button>
       </p>
+
+    
+
     </form>
   );
 };
 
-export default SignupForm;
+export default LoginForm;
