@@ -8,8 +8,18 @@
     box-sizing: border-box;
 }
 
-nav{
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(3.4px);
-    -webkit-backdrop-filter: blur(3.4px);
+body {
+    background-color: #060010;
+}
+.glassy-navbar {
+  background: #06001013;
+    backdrop-filter: blur(10px);
+  border-bottom: 0.4px solid #6100fe3d;
+  transition: transform 0.3s ease;
+}
+
+
+.gradient-bg {
+    background: #060010;
+    background: linear-gradient(5deg, rgba(6, 0, 16, 1) 15%, rgba(6, 0, 16, 0) 70%);
 }

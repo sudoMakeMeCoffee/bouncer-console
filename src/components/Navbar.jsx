@@ -1,30 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useSignupStore from "../store/useSignupStore";
+import { HiBars2 } from "react-icons/hi2";
 
 const Navbar = () => {
+  const openSignup = useSignupStore((state) => state.openSignup);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
-     const openSignup = useSignupStore((state) => state.openSignup);
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 64) {
+        // scrolling down
+        setShowNavbar(false);
+      } else {
+        // scrolling up
+        setShowNavbar(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   return (
-    <nav className="w-full h-[64px] fixed top-0 z-50">
+    <nav
+      className={`w-full h-[64px] fixed top-0 z-50 glassy-navbar ${
+        showNavbar ? "translate-y-0" : "-translate-y-full"
+      }`}
+    >
       <div className="wrapper h-full flex items-center justify-between">
         <h1 className="font-bold text-md">
           B<span className="text-primary">OU</span>NCER
         </h1>
 
-        <div className="flex items-center gap-4 text-sm">
+        <div className=" items-center gap-4 text-sm hidden sm:flex">
           <span>Products</span>
           <span>Solutions</span>
           <span>Docs</span>
         </div>
 
-        <div className="flex items-center gap-4">
-            <Link to={"/login"} className="text-sm font-medium">Log in</Link>
-       
-            <button onClick={openSignup}  className="btn-primary btn-md">
-                Sign Up
-            </button>
+        <div className="flex items-center gap-5">
+          <Link to={"/login"} className="text-xs font-medium  sm:text-sm">
+            Log in
+          </Link>
+
+          <button onClick={openSignup} className="btn-primary btn-md">
+            Sign Up
+          </button>
+
+          <HiBars2 className="cursor-pointer text-lg sm:hidden"/>
         </div>
       </div>
     </nav>

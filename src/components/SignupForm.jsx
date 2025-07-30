@@ -9,8 +9,8 @@ const SignupForm = () => {
   const closeSignup = useSignupStore((state) => state.closeSignup);
   return (
     <form
-      className="bg-secondary outline outline-[0.1px] outline-gray-700 -w-[400px] absolute z-[1000]
-     top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] p-8 flex flex-col gap-4 rounded-md"
+      className="bg-secondary outline outline-[0.1px] outline-gray-700 w-full max-w-[400px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[1000]
+     p-8 flex flex-col gap-4 rounded-md"
     >
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-md">Signup with</h1>

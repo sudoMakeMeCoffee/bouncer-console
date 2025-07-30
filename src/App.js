@@ -14,6 +14,23 @@ function App() {
   }, []);
   const { isSignupOpen, closeSignup } = useSignupStore();
 
+  useEffect(() => {
+    if (isSignupOpen) {
+      const scrollY = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      document.body.style.overflow = "hidden";
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.overflow = "";
+      window.scrollTo(0, parseInt(scrollY || "0") * -1);
+    }
+  }, [isSignupOpen]);
+
   return (
     <div className="bg-background dark:bg-secondary text-secondary dark:text-background min-h-screen relative">
       <Router>
@@ -28,17 +45,16 @@ function App() {
           </Routes>
         </div>
 
-        {/* Signup modal */}
         {isSignupOpen && (
           <div
-            className="absolute inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
-            onClick={closeSignup} // <-- This listens for clicks on the backdrop
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-md"
+            onClick={closeSignup}
           >
             <div
-              className="bg-white dark:bg-secondary p-6 rounded-lg shadow-lg"
-              onClick={(e) => e.stopPropagation()} // <-- Prevents modal click from closing it
+              className="bg-white dark:bg-secondary text-black dark:text-white p-6 rounded-lg w-full max-w-md mx-auto"
+              onClick={(e) => e.stopPropagation()}
             >
-              <SignupForm onClose={closeSignup} />
+              <SignupForm />
             </div>
           </div>
         )}
