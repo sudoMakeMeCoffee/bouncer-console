@@ -1,12 +1,33 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useAuthFormStore from "../store/useAuthFormStore";
+import useAuthStore from "../store/useAuthStore";
 import { HiBars2 } from "react-icons/hi2";
+import axios from "axios";
+import { API_URL } from "../Consts";
 
 const Navbar = () => {
   const { openSignup, openLogin, isSignupOpen, isLoginOpen, closeSignup, closeLogin, openInfo } = useAuthFormStore();
+  const {isAuthenticates, user, setIsAuthenticated, setUser } = useAuthStore();
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+
+  useEffect(() => {
+    axios.post(API_URL +'/auth/client/check-auth', {}, { withCredentials: true })
+      .then((res) => {
+        setIsAuthenticated(true);
+        setUser(res.data.data);
+      })
+      .catch(() => {
+        setIsAuthenticated(false);
+        setUser(null);
+      });
+
+  }, []);
+
+      console.log(user)
+
 
   useEffect(() => {
     const handleScroll = () => {
