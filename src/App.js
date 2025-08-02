@@ -8,9 +8,11 @@ import SignupForm from "./components/SignupForm";
 import useAuthFormStore from "./store/useAuthFormStore";
 import LoginForm from "./components/LoginForm";
 import Verification from "./pages/Verification";
+import { Toaster } from "sonner";
+import InfoCard from "./components/InfoCard";
 
 function App() {
-    const { openSignup, openLogin, isSignupOpen, isLoginOpen, closeSignup, closeLogin } = useAuthFormStore();
+    const { openSignup, openLogin, isSignupOpen, isLoginOpen, isInfoOpen, closeSignup, closeLogin, closeInfo } = useAuthFormStore();
 
 
   useEffect(() => {
@@ -18,7 +20,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (isSignupOpen || isLoginOpen) {
+    if (isSignupOpen || isLoginOpen || isInfoOpen) {
       const scrollY = window.scrollY;
       document.body.style.position = "fixed";
       document.body.style.top = `-${scrollY}px`;
@@ -32,7 +34,7 @@ function App() {
       document.body.style.overflow = "";
       window.scrollTo(0, parseInt(scrollY || "0") * -1);
     }
-  }, [isSignupOpen, isLoginOpen]);
+  }, [isSignupOpen, isLoginOpen, isInfoOpen]);
 
   return (
     <div className="bg-background dark:bg-secondary text-secondary dark:text-background min-h-screen relative">
@@ -46,6 +48,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/verification/:type" element={<Verification />} />
           </Routes>
+          <Toaster richColors position="top-right" />
         </div>
 
         {isSignupOpen && (
@@ -72,6 +75,20 @@ function App() {
               onClick={(e) => e.stopPropagation()}
             >
               <LoginForm />
+            </div>
+          </div>
+        )}
+
+        {isInfoOpen && (
+          <div
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-md"
+            onClick={closeLogin}
+          >
+            <div
+              className="bg-white dark:bg-secondary text-black dark:text-white p-6 rounded-lg w-full max-w-md mx-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <InfoCard />
             </div>
           </div>
         )}

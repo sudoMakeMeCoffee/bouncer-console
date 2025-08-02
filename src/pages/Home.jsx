@@ -2,6 +2,7 @@ import React from "react";
 import Hero from "../components/Hero";
 import Navbar from "../components/Navbar";
 import DotGrid from "../components/DotGrid";
+import { toast } from "sonner";
 
 const Home = () => {
   return (
@@ -9,7 +10,7 @@ const Home = () => {
       <Navbar />
 
       <div className="relative">
-        <div  className="relative w-full h-[600px] md:h-[650px]">
+        <div className="relative w-full h-[600px] md:h-[650px]">
           <DotGrid
             dotSize={5}
             gap={15}
@@ -28,9 +29,7 @@ const Home = () => {
         <div className="absolute bottom-0 w-full  gradient-bg h-[400px]"></div>
       </div>
 
-      <div className="bg-secondary h-[400px]">
-        Section
-      </div>
+      <div className="bg-secondary h-[400px]">Section</div>
     </>
   );
 };

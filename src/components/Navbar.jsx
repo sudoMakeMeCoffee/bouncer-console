@@ -4,7 +4,7 @@ import useAuthFormStore from "../store/useAuthFormStore";
 import { HiBars2 } from "react-icons/hi2";
 
 const Navbar = () => {
-  const { openSignup, openLogin, isSignupOpen, isLoginOpen, closeSignup, closeLogin } = useAuthFormStore();
+  const { openSignup, openLogin, isSignupOpen, isLoginOpen, closeSignup, closeLogin, openInfo } = useAuthFormStore();
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -44,7 +44,7 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-5">
-          <button onClick={() => openLogin()} className="text-xs font-medium  sm:text-sm">
+          <button onClick={() => openInfo("Check your inbox", "We have sent a verification link to your email")} className="text-xs font-medium  sm:text-sm">
             Log in
           </button>
 

@@ -6,9 +6,10 @@ import { RiErrorWarningLine } from "react-icons/ri";
 import useAuthFormStore from "../store/useAuthFormStore";
 import axios from "axios";
 import { API_URL } from "../Consts";
+import { toast } from "sonner";
 
 const SignupForm = () => {
-  const { openLogin, closeSignup } = useAuthFormStore();
+  const { openLogin, closeSignup, openInfo } = useAuthFormStore();
 
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState({
@@ -100,14 +101,14 @@ const SignupForm = () => {
       .post(API_URL + "/auth/client/signup", data, { withCredentials: true })
       .then((res) => {
         setIsLoading(false);
-        console.log(res);
+        openInfo("Verification Link Sent","A verification link has been sent to your email. Please check your inbox.");
         setErrors((prev) => ({ ...prev, apiError: res.data.error }));
       })
       .catch((err) => {
         setIsLoading(false);
         setErrors((prev) => ({
           ...prev,
-          apiError: err?.response?.data?.error || "An error occurred.",
+          apiError: err?.response?.data?.error || "Something went wrong.",
         }));
         console.error(err);
       });
