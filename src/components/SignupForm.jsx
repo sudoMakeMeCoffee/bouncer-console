@@ -157,6 +157,7 @@ const SignupForm = () => {
           onBlur={handleBlur}
           placeholder="Username"
           className="text-xs font-normal bg-transparent border border-gray-700 rounded-md px-3 py-3 focus:outline-none focus:border-primary transition-colors"
+          disabled={isLoading}
         />
         <span className="text-xs text-red-500">{errors.username}</span>
       </div>
@@ -170,6 +171,7 @@ const SignupForm = () => {
           onBlur={handleBlur}
           placeholder="Email"
           className="text-xs font-normal bg-transparent border border-gray-700 rounded-md px-3 py-3 focus:outline-none focus:border-primary transition-colors"
+          disabled={isLoading}
         />
         <span className="text-xs text-red-500">{errors.email}</span>
       </div>
@@ -183,6 +185,7 @@ const SignupForm = () => {
           onBlur={handleBlur}
           placeholder="Password"
           className="text-xs font-normal bg-transparent border border-gray-700 rounded-md px-3 py-3 focus:outline-none focus:border-primary transition-colors"
+          disabled={isLoading}
         />
         <span className="text-xs text-red-500">{errors.password}</span>
       </div>
