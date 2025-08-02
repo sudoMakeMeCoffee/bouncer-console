@@ -100,15 +100,15 @@ const SignupForm = () => {
       .post(API_URL + "/auth/client/signup", data, { withCredentials: true })
       .then((res) => {
         setIsLoading(false);
-        console.log(res)
-        if (res.data.success) {
-          closeSignup();
-        } else {
-          setErrors((prev) => ({ ...prev, apiError: res.data.error }));
-        }
-      }).catch((err) => {
+        console.log(res);
+        setErrors((prev) => ({ ...prev, apiError: res.data.error }));
+      })
+      .catch((err) => {
         setIsLoading(false);
-        setErrors((prev) => ({ ...prev, apiError: "An error occurred. Please try again later." }));
+        setErrors((prev) => ({
+          ...prev,
+          apiError: err?.response?.data?.error || "An error occurred.",
+        }));
         console.error(err);
       });
   };

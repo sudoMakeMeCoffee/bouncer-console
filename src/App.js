@@ -7,6 +7,7 @@ import Signup from "./pages/Signup";
 import SignupForm from "./components/SignupForm";
 import useAuthFormStore from "./store/useAuthFormStore";
 import LoginForm from "./components/LoginForm";
+import Verification from "./pages/Verification";
 
 function App() {
     const { openSignup, openLogin, isSignupOpen, isLoginOpen, closeSignup, closeLogin } = useAuthFormStore();
@@ -43,6 +44,7 @@ function App() {
         >
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/verification/:type" element={<Verification />} />
           </Routes>
         </div>
 

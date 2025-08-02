@@ -1,9 +1,11 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CgClose } from "react-icons/cg";
 import { FcGoogle } from "react-icons/fc";
 import { GrGithub } from "react-icons/gr";
 import { RiErrorWarningLine } from "react-icons/ri";
 import useAuthFormStore from "../store/useAuthFormStore";
+import { API_URL } from "../Consts";
+import axios from "axios";
 
 const LoginForm = () => {
   const { openSignup, closeLogin } = useAuthFormStore();
@@ -60,6 +62,22 @@ const LoginForm = () => {
     if (!validateForm()) return;
 
     setIsLoading(true);
+
+    axios
+      .post(API_URL + "/auth/client/login", data, { withCredentials: true })
+      .then((res) => {
+        setIsLoading(false);
+        console.log(res);
+        setErrors((prev) => ({ ...prev, apiError: res.data.error }));
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setErrors((prev) => ({
+          ...prev,
+          apiError: err?.response?.data?.error || "An error occurred.",
+        }));
+        console.error(err);
+      });
   };
 
   return (
