@@ -5,10 +5,6 @@ const useAuthFormStore = create((set) => ({
   isLoginOpen: false,
   isInfoOpen: false,
 
-   info: {
-    title: "",
-    message: "",
-  },
 
 
   openSignup: () =>
@@ -25,17 +21,16 @@ const useAuthFormStore = create((set) => ({
       isInfoOpen: false,
     })),
 
-  openInfo: (title, message) =>
+  openInfo: () =>
     set(() => ({
       isInfoOpen: true,
       isSignupOpen: false,
       isLoginOpen: false,
-      info: { title, message } 
     })),
 
   closeSignup: () => set({ isSignupOpen: false }),
   closeLogin: () => set({ isLoginOpen: false }),
-  closeInfo: () => set({ isInfoOpen: false, info: { title: "", message: "" }}),
+  closeInfo: () => set({ isInfoOpen: false}),
 }));
 
 export default useAuthFormStore;

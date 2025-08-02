@@ -7,7 +7,6 @@ import { toast } from "sonner";
 import { ClipLoader } from "react-spinners";
 
 const InfoCard = () => {
-  const { closeInfo, info } = useAuthFormStore();
   const [isLoading, setIsLoading] = useState(false);
   const [cooldown, setCooldown] = useState(false);
   const [timer, setTimer] = useState(60);
@@ -76,7 +75,7 @@ const InfoCard = () => {
             color="#ffffff"
             loading={isLoading}
             size={20}
-            aria-label="Loading Spinner"
+            aria-label="Loading..."
             data-testid="loader"
           />
         ) : cooldown ? (

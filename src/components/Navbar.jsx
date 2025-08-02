@@ -44,7 +44,7 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-5">
-          <button onClick={() => openInfo("Check your inbox", "We have sent a verification link to your email")} className="text-xs font-medium  sm:text-sm">
+          <button onClick={() => openLogin()} className="text-xs font-medium  sm:text-sm">
             Log in
           </button>
 
