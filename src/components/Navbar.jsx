@@ -1,84 +1,94 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import { Link } from "react-router-dom";
+import { HiBars2 } from "react-icons/hi2";
+import clsx from "clsx";
+
 import useAuthFormStore from "../store/useAuthFormStore";
 import useAuthStore from "../store/useAuthStore";
-import { HiBars2 } from "react-icons/hi2";
-import { Link } from "react-router-dom";
+
+const NAVBAR_HEIGHT = 64;
 
 const Navbar = () => {
-  const {
-    openSignup,
-    openLogin,
-    isSignupOpen,
-    isLoginOpen,
-    closeSignup,
-    closeLogin,
-    openInfo,
-  } = useAuthFormStore();
-  const { isAuthenticated, user, setIsAuthenticated, setUser } = useAuthStore();
+  const { openSignup, openLogin } = useAuthFormStore();
+  const { isAuthenticated, user } = useAuthStore();
+
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  console.log(user);
+  const handleScroll = useCallback(() => {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY > lastScrollY && currentScrollY > NAVBAR_HEIGHT) {
+      setShowNavbar(false);
+    } else {
+      setShowNavbar(true);
+    }
+    setLastScrollY(currentScrollY);
+  }, [lastScrollY]);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      if (currentScrollY > lastScrollY && currentScrollY > 64) {
-        setShowNavbar(false);
-      } else {
-        setShowNavbar(true);
-      }
-
-      setLastScrollY(currentScrollY);
-    };
-
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
+  }, [handleScroll]);
+
+  const handleLogout = () => {
+    // TODO: Implement logout logic (clear cookies, call API, reset auth store)
+    console.log("Logging out...");
+  };
 
   return (
     <nav
-      className={`w-full h-[64px] fixed top-0 z-50 glassy-navbar ${
-        showNavbar ? "translate-y-0" : "-translate-y-full"
-      }`}
+      className={clsx(
+        "w-full fixed top-0 z-50 glassy-navbar transition-transform duration-300",
+        {
+          "translate-y-0": showNavbar,
+          "-translate-y-full": !showNavbar,
+        }
+      )}
     >
-      <div className="wrapper h-full flex items-center justify-between">
-        <h1 className="font-bold text-md">
+      <div className="wrapper h-[64px] flex items-center justify-between">
+        {/* Logo */}
+        <Link to="/" className="font-bold text-md">
           B<span className="text-primary">OU</span>NCER
-        </h1>
+        </Link>
 
-        <div className=" items-center gap-4 text-sm hidden sm:flex">
-          <span>Products</span>
-          <span>Solutions</span>
-          <span>Docs</span>
+        {/* Desktop Links */}
+        <div className="items-center gap-4 text-sm hidden sm:flex">
+          <span className="cursor-pointer">Products</span>
+          <span className="cursor-pointer">Solutions</span>
+          <span className="cursor-pointer">Docs</span>
         </div>
 
-        {isAuthenticated ? (
-          <div className="flex items-center gap-5">
-            <button className="text-xs font-medium  sm:text-sm">Log Out</button>
+        {/* Auth Buttons */}
+        <div className="flex items-center gap-5">
+          {isAuthenticated ? (
+            <>
+              <button
+                onClick={handleLogout}
+                className="text-xs font-medium sm:text-sm"
+              >
+                Log Out
+              </button>
+              <Link to="/dashboard" className="btn-primary btn-md">
+                Dashboard
+              </Link>
+            </>
+          ) : (
+            <>
+              <button
+                onClick={openLogin}
+                className="text-xs font-medium sm:text-sm"
+              >
+                Log In
+              </button>
+              <button onClick={openSignup} className="btn-primary btn-md">
+                Sign Up
+              </button>
+            </>
+          )}
 
-            <Link to={"/dashboard"} className="btn-primary btn-md">Dashboard</Link>
-
-            <HiBars2 className="cursor-pointer text-lg sm:hidden" />
-          </div>
-        ) : (
-          <div className="flex items-center gap-5">
-            <button
-              onClick={() => openLogin()}
-              className="text-xs font-medium  sm:text-sm"
-            >
-              Log in
-            </button>
-
-            <button onClick={() => openSignup()} className="btn-primary btn-md">
-              Sign Up
-            </button>
-
-            <HiBars2 className="cursor-pointer text-lg sm:hidden" />
-          </div>
-        )}
+          {/* Mobile Menu Icon */}
+          <HiBars2 className="cursor-pointer text-lg sm:hidden" />
+        </div>
       </div>
     </nav>
   );
