@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useAuthFormStore from "../store/useAuthFormStore";
 import useAuthStore from "../store/useAuthStore";
 import { HiBars2 } from "react-icons/hi2";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const {
@@ -13,7 +14,7 @@ const Navbar = () => {
     closeLogin,
     openInfo,
   } = useAuthFormStore();
-  const { isAuthenticates, user, setIsAuthenticated, setUser } = useAuthStore();
+  const { isAuthenticated, user, setIsAuthenticated, setUser } = useAuthStore();
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -54,20 +55,30 @@ const Navbar = () => {
           <span>Docs</span>
         </div>
 
-        <div className="flex items-center gap-5">
-          <button
-            onClick={() => openLogin()}
-            className="text-xs font-medium  sm:text-sm"
-          >
-            Log in
-          </button>
+        {isAuthenticated ? (
+          <div className="flex items-center gap-5">
+            <button className="text-xs font-medium  sm:text-sm">Log Out</button>
 
-          <button onClick={() => openSignup()} className="btn-primary btn-md">
-            Sign Up
-          </button>
+            <Link to={"/dashboard"} className="btn-primary btn-md">Dashboard</Link>
 
-          <HiBars2 className="cursor-pointer text-lg sm:hidden" />
-        </div>
+            <HiBars2 className="cursor-pointer text-lg sm:hidden" />
+          </div>
+        ) : (
+          <div className="flex items-center gap-5">
+            <button
+              onClick={() => openLogin()}
+              className="text-xs font-medium  sm:text-sm"
+            >
+              Log in
+            </button>
+
+            <button onClick={() => openSignup()} className="btn-primary btn-md">
+              Sign Up
+            </button>
+
+            <HiBars2 className="cursor-pointer text-lg sm:hidden" />
+          </div>
+        )}
       </div>
     </nav>
   );
