@@ -39,12 +39,35 @@ function App() {
         setIsAuthenticated(true);
         setUser(res.data.data);
       })
-      .catch(() => {
-        setIsAuthenticated(false);
-        setUser(null);
+      .catch(async (error) => {
+        if (error.response?.status === 401) {
+          // Try refresh token
+          try {
+            await axios.post(
+              API_URL + "/auth/client/refresh",
+              {},
+              { withCredentials: true }
+            );
+            // Retry check-auth after refresh success
+            const retryRes = await axios.post(
+              API_URL + "/auth/client/check-auth",
+              {},
+              { withCredentials: true }
+            );
+            setIsAuthenticated(true);
+            setUser(retryRes.data.data);
+          } catch {
+            // Refresh failed — log out user
+            setIsAuthenticated(false);
+            setUser(null);
+          }
+        } else {
+          setIsAuthenticated(false);
+          setUser(null);
+        }
       })
       .finally(() => {
-        setLoading(false); // <- only once we know the result
+        setLoading(false);
       });
   }, []);
 
