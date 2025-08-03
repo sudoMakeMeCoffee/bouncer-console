@@ -10,13 +10,42 @@ import LoginForm from "./components/LoginForm";
 import Verification from "./pages/Verification";
 import { Toaster } from "sonner";
 import InfoCard from "./components/InfoCard";
+import Dashboard from "./pages/client/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
+import axios from "axios";
+import { API_URL } from "./Consts";
+import useAuthStore from "./store/useAuthStore";
 
 function App() {
-    const { openSignup, openLogin, isSignupOpen, isLoginOpen, isInfoOpen, closeSignup, closeLogin, closeInfo } = useAuthFormStore();
+  const {
+    openSignup,
+    openLogin,
+    isSignupOpen,
+    isLoginOpen,
+    isInfoOpen,
+    closeSignup,
+    closeLogin,
+    closeInfo,
+  } = useAuthFormStore();
 
+  const { isAuthenticated, user, setIsAuthenticated, setUser, setLoading } =
+    useAuthStore();
 
   useEffect(() => {
-    document.documentElement.classList.add("dark"); // toggle dynamically if needed
+    document.documentElement.classList.add("dark");
+    axios
+      .post(API_URL + "/auth/client/check-auth", {}, { withCredentials: true })
+      .then((res) => {
+        setIsAuthenticated(true);
+        setUser(res.data.data);
+      })
+      .catch(() => {
+        setIsAuthenticated(false);
+        setUser(null);
+      })
+      .finally(() => {
+        setLoading(false); // <- only once we know the result
+      });
   }, []);
 
   useEffect(() => {
@@ -47,6 +76,14 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/verification/:type" element={<Verification />} />
+            <Route
+              path="/dashboard"
+              element={
+                <ProtectedRoute allowedRoles={["CLIENT"]}>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
           <Toaster richColors position="top-right" />
         </div>
