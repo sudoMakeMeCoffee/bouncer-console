@@ -15,6 +15,7 @@ import useAuthStore from "./store/useAuthStore";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Apps from "./pages/dashboard/Apps";
 import Overview from "./pages/dashboard/Overview";
+import NewApp from "./pages/dashboard/NewApp";
 
 function App() {
   const {
@@ -99,12 +100,13 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/verification/:type" element={<Verification />} />
-            <Route element={<ProtectedRoute allowedRoles={["CLIENT"]} />} >  
-              <Route path="/dashboard" element={<DashboardLayout />} >
+            <Route element={<ProtectedRoute allowedRoles={["CLIENT"]} />}>
+              <Route path="/dashboard" element={<DashboardLayout />}>
                 <Route index element={<Overview />} />
                 <Route path="apps" element={<Apps />} />
               </Route>
-             </Route>
+              <Route path="/dashboard/apps/new" element={<NewApp />} />
+            </Route>
           </Routes>
           <Toaster richColors position="top-right" />
         </div>
