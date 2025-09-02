@@ -14,6 +14,7 @@ import { API_URL } from "./Consts";
 import useAuthStore from "./store/useAuthStore";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Apps from "./pages/dashboard/Apps";
+import Overview from "./pages/dashboard/Overview";
 
 function App() {
   const {
@@ -100,7 +101,8 @@ function App() {
             <Route path="/verification/:type" element={<Verification />} />
             <Route element={<ProtectedRoute allowedRoles={["CLIENT"]} />} >  
               <Route path="/dashboard" element={<DashboardLayout />} >
-                <Route index element={<Apps />} />
+                <Route index element={<Overview />} />
+                <Route path="apps" element={<Apps />} />
               </Route>
              </Route>
           </Routes>
