@@ -37,7 +37,7 @@ const TopNavTabs = () => {
         }
       )}
     >
-      <div className="max-w-full mx-[16px] md:mx-[32px] flex items-center h-full">
+      <div className="dashboard-wrapper flex items-center h-full">
         <div className="flex items-center gap-8 text-sm h-full">
           <NavLink
             to={`/dashboard/apps/${id}`}

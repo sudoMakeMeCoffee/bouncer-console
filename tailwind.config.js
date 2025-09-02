@@ -103,6 +103,23 @@ module.exports = {
           },
         },
 
+        ".dashboard-wrapper": {
+          maxWidth: "100%",
+          marginLeft: "auto",
+          marginRight: "auto",
+          paddingLeft: theme("spacing.md"),
+          paddingRight: theme("spacing.md"),
+          [`@screen sm`]: {
+            paddingLeft: theme("spacing.md"),
+            paddingRight: theme("spacing.md"),
+          },
+          [`@screen lg`]: {
+            paddingLeft: theme("spacing.lg"),
+            paddingRight: theme("spacing.lg"),
+            maxWidth: theme("maxWidth.8xl"),
+          },
+        },
+
         ".input-primary": {
           display: "flex",
           alignItems: "center",

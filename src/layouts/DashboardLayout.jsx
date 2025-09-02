@@ -16,7 +16,7 @@ const DashboardLayout = () => {
       {/* Conditionally render TopNavTabs */}
       {isAppPage ? <AppTopNavTabs /> : <TopNavTabs />}
 
-      <div className="wrapper pt-[150px] min-h-screen">
+      <div className="dashboard-wrapper pt-[150px] min-h-screen">
         <Outlet />
       </div>
     </div>

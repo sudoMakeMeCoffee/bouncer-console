@@ -49,7 +49,7 @@ const Navbar = () => {
         }
       )}
     >
-      <div className=" max-w-full mx-[16px] md:mx-[32px] h-[64px] flex items-center justify-between">
+      <div className="dashboard-wrapper h-[64px] flex items-center justify-between">
         <Link to="/" className="font-bold text-md">
           B<span className="text-primary">OU</span>NCER /{" "}
         </Link>
