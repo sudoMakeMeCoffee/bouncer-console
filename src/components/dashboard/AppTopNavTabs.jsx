@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { NavLink } from "react-router-dom"; // ✅ use NavLink
+import { NavLink, useParams } from "react-router-dom";
 import clsx from "clsx";
 
 const NAVBAR_HEIGHT = 64;
@@ -7,6 +7,8 @@ const NAVBAR_HEIGHT = 64;
 const TopNavTabs = () => {
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+
+  const { id } = useParams(); // Get the current app ID
 
   const handleScroll = useCallback(() => {
     const currentScrollY = window.scrollY;
@@ -23,6 +25,8 @@ const TopNavTabs = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
+  if (!id) return null; // If no app ID, don't render tabs
+
   return (
     <nav
       className={clsx(
@@ -36,7 +40,7 @@ const TopNavTabs = () => {
       <div className="max-w-full mx-[16px] md:mx-[32px] flex items-center h-full">
         <div className="flex items-center gap-8 text-sm h-full">
           <NavLink
-            to="/dashboard"
+            to={`/dashboard/apps/${id}`}
             end
             className={({ isActive }) =>
               clsx(
@@ -51,7 +55,7 @@ const TopNavTabs = () => {
           </NavLink>
 
           <NavLink
-            to="/dashboard/apps"
+            to={`/dashboard/apps/${id}/users`}
             className={({ isActive }) =>
               clsx(
                 "h-full flex items-center px-1",
