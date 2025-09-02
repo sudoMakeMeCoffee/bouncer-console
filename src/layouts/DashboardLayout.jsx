@@ -6,10 +6,10 @@ import TopNavTabs from "../components/dashboard/TopNavTabs";
 const DashboardLayout = () => {
   
   return (
-    <div>
+    <div className="bg-[#1b1b1f]">
       <Navbar />
       <TopNavTabs/>
-      <div className="wrapper mt-[128px]">
+      <div className="wrapper pt-[150px] min-h-screen">
         <Outlet />
       </div>
     </div>

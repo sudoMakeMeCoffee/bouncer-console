@@ -42,7 +42,7 @@ const Navbar = () => {
   return (
     <nav
       className={clsx(
-        "w-full fixed top-0 z-50 bg-secondary border-b-[0.5px] border-gray-800  transition-transform duration-300",
+        "w-full fixed top-0 z-50 bg-[#111113] border-b-[0.2px] border-gray-800  transition-transform duration-300",
         {
           "translate-y-0": showNavbar,
           "-translate-y-full": !showNavbar,

@@ -26,7 +26,7 @@ const TopNavTabs = () => {
   return (
     <nav
       className={clsx(
-        "w-full fixed top-[64px] z-50 transition-transform duration-300 text-white h-[50px] border-b-[0.1px] border-gray-800",
+        "bg-[#111113] w-full fixed top-[64.3px] z-50 transition-transform duration-300 text-white h-[50px] border-b-[0.1px] border-gray-800",
         {
           "translate-y-0": showNavbar,
           "-translate-y-full": !showNavbar,
