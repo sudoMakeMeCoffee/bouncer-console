@@ -6,9 +6,8 @@ import AppTopNavTabs from "../components/dashboard/AppTopNavTabs"; // alternativ
 
 const DashboardLayout = () => {
   const location = useLocation();
-
-  // Check if current route matches /dashboard/apps/:id
-  const isAppPage = useMatch("/dashboard/apps/:id");
+  console.log(location);
+  const isAppPage = useMatch("/dashboard/apps/:id/*");
 
   return (
     <div className="bg-[#1b1b1f]">
