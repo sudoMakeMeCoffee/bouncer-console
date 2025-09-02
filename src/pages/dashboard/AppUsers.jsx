@@ -1,9 +1,10 @@
 import React from 'react'
+import AppUserRegisterForm from '../../components/dashboard/AppUserRegisterForm'
 
 const AppUsers = () => {
   return (
     <div>
-      Users
+      <AppUserRegisterForm/>
     </div>
   )
 }
