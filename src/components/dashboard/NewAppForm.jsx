@@ -10,12 +10,12 @@ const NewAppForm = () => {
   const [touched, setTouched] = useState(false);
 
   const [data, setData] = useState({
-    appName: "",
+    name: "",
   });
 
   const [errors, setErrors] = useState({
     apiError: "",
-    appName: "",
+    name: "",
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -28,12 +28,12 @@ const NewAppForm = () => {
   const validateForm = () => {
     const newErrors = {
       apiError: "",
-      appName: "",
+      name: "",
     };
     let isValid = true;
 
-    if (!data.appName) {
-      newErrors.appName = "App Name is required.";
+    if (!data.name) {
+      newErrors.name = "App Name is required.";
       isValid = false;
     }
 
@@ -54,7 +54,7 @@ const NewAppForm = () => {
     setIsLoading(true);
 
     axios
-      .post(API_URL + "/auth/client/login", data, { withCredentials: true })
+      .post(API_URL + "/client/app", data, { withCredentials: true })
       .then((res) => {
         setIsLoading(false);
         console.log(res);
@@ -91,14 +91,14 @@ const NewAppForm = () => {
         <div className="flex flex-col gap-2">
           <input
             type="text"
-            name="email"
-            value={data.appName}
+            name="name"
+            value={data.name}
             onChange={handleInputChange}
             className="text-xs font-normal bg-transparent border border-gray-700 rounded-md px-3 py-3 focus:outline-none focus:border-primary transition-colors"
             placeholder="Application Name"
             disabled={isLoading}
           />
-          <span className="text-xs text-red-500">{errors.appName}</span>
+          <span className="text-xs text-red-500">{errors.name}</span>
         </div>
 
         <button
