@@ -1,10 +1,10 @@
 import React, { use, useEffect, useState } from "react";
 import Home from "../Home";
-import App from "../../components/dashboard/App";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../../Consts";
+import AppCard from "../../components/dashboard/AppCard";
 
 const Apps = () => {
   const [apps, setApps] = useState([]);
@@ -30,7 +30,7 @@ const Apps = () => {
 
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {apps.map((app) => (
-          <App key={app.id} app={app} />
+          <AppCard key={app.id} app={app} />
         ))}
         <Link
           to="/dashboard/apps/new"
