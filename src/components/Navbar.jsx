@@ -5,6 +5,8 @@ import clsx from "clsx";
 
 import useAuthFormStore from "../store/useAuthFormStore";
 import useAuthStore from "../store/useAuthStore";
+import axios from "axios";
+import { API_URL } from "../Consts";
 
 const NAVBAR_HEIGHT = 64;
 
@@ -31,8 +33,10 @@ const Navbar = () => {
   }, [handleScroll]);
 
   const handleLogout = () => {
-    // TODO: Implement logout logic (clear cookies, call API, reset auth store)
-    console.log("Logging out...");
+    axios
+      .post(`${API_URL}/auth/client/logout`, {}, { withCredentials: true })
+      .then(() => (window.location.href = "/"))
+      .catch((e) => console.log(e));
   };
 
   return (

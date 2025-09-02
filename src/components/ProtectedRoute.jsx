@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Outlet } from "react-router-dom";
 import useAuthStore from "../store/useAuthStore";
 import useAuthFormStore from "../store/useAuthFormStore";
 
-const ProtectedRoute = ({ allowedRoles, requireVerified = false, children }) => {
+const ProtectedRoute = ({ allowedRoles, requireVerified = false }) => {
   const { isAuthenticated, user, loading } = useAuthStore();
   const { openLogin } = useAuthFormStore();
   const location = useLocation();
@@ -19,19 +19,19 @@ const ProtectedRoute = ({ allowedRoles, requireVerified = false, children }) => 
   }
 
   if (!isAuthenticated) {
-    return null; // block render but don't redirect
+    return null;
   }
 
   if (requireVerified && !user?.emailVerified) {
-    // optionally show a message or modal here instead of redirect
     return null;
   }
 
   if (allowedRoles && !allowedRoles.includes(user?.role)) {
-    return null; // or show "Not Authorized" component
+    return null;
   }
 
-  return children;
+  // ✅ render nested routes here
+  return <Outlet />;
 };
 
 export default ProtectedRoute;

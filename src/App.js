@@ -1,20 +1,19 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
-import Navbar from "./components/Navbar";
 import { useEffect, useState } from "react";
-import Signup from "./pages/Signup";
 import SignupForm from "./components/SignupForm";
 import useAuthFormStore from "./store/useAuthFormStore";
 import LoginForm from "./components/LoginForm";
 import Verification from "./pages/Verification";
 import { Toaster } from "sonner";
 import InfoCard from "./components/InfoCard";
-import Dashboard from "./pages/client/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import axios from "axios";
 import { API_URL } from "./Consts";
 import useAuthStore from "./store/useAuthStore";
+import DashboardLayout from "./layouts/DashboardLayout";
+import Apps from "./pages/dashboard/Apps";
 
 function App() {
   const {
@@ -99,14 +98,11 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/verification/:type" element={<Verification />} />
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute allowedRoles={["CLIENT"]}>
-                  <Dashboard />
-                </ProtectedRoute>
-              }
-            />
+            <Route element={<ProtectedRoute allowedRoles={["CLIENT"]} />} >  
+              <Route path="/dashboard" element={<DashboardLayout />} >
+                <Route index element={<Apps />} />
+              </Route>
+             </Route>
           </Routes>
           <Toaster richColors position="top-right" />
         </div>
