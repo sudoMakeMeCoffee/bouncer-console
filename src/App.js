@@ -16,6 +16,7 @@ import DashboardLayout from "./layouts/DashboardLayout";
 import Apps from "./pages/dashboard/Apps";
 import Overview from "./pages/dashboard/Overview";
 import NewApp from "./pages/dashboard/NewApp";
+import DashboardApp from "./pages/dashboard/App";
 
 function App() {
   const {
@@ -104,6 +105,7 @@ function App() {
               <Route path="/dashboard" element={<DashboardLayout />}>
                 <Route index element={<Overview />} />
                 <Route path="apps" element={<Apps />} />
+                <Route path="apps/:id" element={<DashboardApp />} />
               </Route>
               <Route path="/dashboard/apps/new" element={<NewApp />} />
             </Route>
