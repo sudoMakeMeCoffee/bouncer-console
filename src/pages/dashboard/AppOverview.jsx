@@ -23,7 +23,7 @@ const AppOverview = () => {
 
   return (
     <div className="bg-black text-white">
-      <span>API KEY : {app.apiKey}</span>
+      <span>API KEY : {app?.apiKey}</span>
     </div>
   );
 };

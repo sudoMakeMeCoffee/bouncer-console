@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet, useLocation, useMatch } from "react-router-dom";
 import Navbar from "../components/dashboard/Navbar";
 import TopNavTabs from "../components/dashboard/TopNavTabs";
@@ -6,8 +6,12 @@ import AppTopNavTabs from "../components/dashboard/AppTopNavTabs"; // alternativ
 
 const DashboardLayout = () => {
   const location = useLocation();
-  console.log(location);
   const isAppPage = useMatch("/dashboard/apps/:id/*");
+
+
+  useEffect(() => {
+    document.title = `Dashboard | Bouncer`;
+  }, [])
 
   return (
     <div className="bg-[#1b1b1f]">
