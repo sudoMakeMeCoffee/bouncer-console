@@ -106,8 +106,8 @@ function App() {
               <Route path="/dashboard" element={<DashboardLayout />}>
                 <Route index element={<Overview />} />
                 <Route path="apps" element={<Apps />} />
-                <Route path="apps/:id" element={<DashboardApp />} />
-                <Route path="apps/:id/users" element={<AppUsers />} />
+                <Route path="apps/:appId" element={<DashboardApp />} />
+                <Route path="apps/:appId/users" element={<AppUsers />} />
               </Route>
               <Route path="/dashboard/apps/new" element={<NewApp />} />
             </Route>

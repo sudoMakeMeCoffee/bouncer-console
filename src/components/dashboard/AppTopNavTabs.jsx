@@ -8,7 +8,7 @@ const TopNavTabs = () => {
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const { id } = useParams(); // Get the current app ID
+  const { appId } = useParams(); 
 
   const handleScroll = useCallback(() => {
     const currentScrollY = window.scrollY;
@@ -25,7 +25,7 @@ const TopNavTabs = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  if (!id) return null; // If no app ID, don't render tabs
+  if (!appId) return null; // If no app ID, don't render tabs
 
   return (
     <nav
@@ -40,7 +40,7 @@ const TopNavTabs = () => {
       <div className="dashboard-wrapper flex items-center h-full">
         <div className="flex items-center gap-8 text-sm h-full">
           <NavLink
-            to={`/dashboard/apps/${id}`}
+            to={`/dashboard/apps/${appId}`}
             end
             className={({ isActive }) =>
               clsx(
@@ -55,7 +55,7 @@ const TopNavTabs = () => {
           </NavLink>
 
           <NavLink
-            to={`/dashboard/apps/${id}/users`}
+            to={`/dashboard/apps/${appId}/users`}
             className={({ isActive }) =>
               clsx(
                 "h-full flex items-center px-1",
