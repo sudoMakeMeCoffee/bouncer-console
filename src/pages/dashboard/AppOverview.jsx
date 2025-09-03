@@ -3,10 +3,13 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { API_URL } from "../../Consts";
 import ApiCodeExample from "../../components/dashboard/ApiCodeExample";
+import { FiCopy, FiEye, FiEyeOff, FiCheck } from "react-icons/fi";
 
 const AppOverview = () => {
   const { appId } = useParams();
   const [app, setApp] = useState(null);
+  const [showKey, setShowKey] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const fetchApp = () => {
     axios
@@ -22,8 +25,51 @@ const AppOverview = () => {
     fetchApp();
   }, []);
 
+  const handleCopy = () => {
+    if (!app?.apiKey) return;
+    navigator.clipboard.writeText(app.apiKey);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <div className="flex flex-col gap-8">
+      {/* API Key Card */}
+      <div className="bg-[#1b1b1f] border border-gray-700 rounded-xl p-6 shadow-md flex items-center justify-between">
+        <div className="flex flex-col">
+          <span className="text-gray-400 text-sm mb-1">API Key</span>
+          <span className="font-mono text-white text-sm">
+            {showKey ? app?.apiKey || "••••••••••••••••" : "••••••••••••••••"}
+          </span>
+        </div>
+
+        <div className="flex items-center gap-3">
+          {/* Toggle visibility */}
+          <button
+            onClick={() => setShowKey(!showKey)}
+            className="p-2 rounded-md hover:bg-gray-800 transition"
+          >
+            {showKey ? (
+              <FiEyeOff className="text-gray-300" />
+            ) : (
+              <FiEye className="text-gray-300" />
+            )}
+          </button>
+
+          {/* Copy button */}
+          <button
+            onClick={handleCopy}
+            className="p-2 rounded-md hover:bg-gray-800 transition"
+          >
+            {copied ? (
+              <FiCheck className="text-green-400" />
+            ) : (
+              <FiCopy className="text-gray-300" />
+            )}
+          </button>
+        </div>
+      </div>
+
       {/* Registration Section */}
       <div className="bg-[#1b1b1f] border border-gray-700 rounded-xl p-6 shadow-md flex flex-col md:flex-row gap-6">
         <div className="flex-1 flex flex-col justify-center">
@@ -32,7 +78,7 @@ const AppOverview = () => {
             Allow new users to create accounts for your app securely. 
             Provide their <span className="text-gray-200">email</span> and{" "}
             <span className="text-gray-200">password</span>, and our API will handle 
-            authentication and user creation.  
+            authentication and user creation.
           </p>
         </div>
         <div className="flex-1">
@@ -47,7 +93,7 @@ const AppOverview = () => {
           <p className="text-gray-400 text-sm leading-relaxed">
             Authenticate existing users with their credentials. 
             The API responds with a secure session or token, which you can 
-            use to protect your app’s private routes and features.  
+            use to protect your app’s private routes and features.
           </p>
         </div>
         <div className="flex-1">
