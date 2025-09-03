@@ -43,6 +43,8 @@ function App() {
         setUser(res.data.data);
       })
       .catch(async (error) => {
+
+        console.log(error)
         if (error.response?.status === 401) {
           // Try refresh token
           try {
@@ -59,8 +61,9 @@ function App() {
             );
             setIsAuthenticated(true);
             setUser(retryRes.data.data);
-          } catch {
+          } catch (e){
             // Refresh failed — log out user
+            console.log(e)
             setIsAuthenticated(false);
             setUser(null);
           }
