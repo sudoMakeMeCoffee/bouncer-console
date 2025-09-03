@@ -51,7 +51,7 @@ const Navbar = () => {
     >
       <div className="dashboard-wrapper h-[64px] flex items-center justify-between">
         <Link to="/" className="font-bold text-md">
-          B<span className="text-primary">OU</span>NCER /{" "}
+          B<span className="text-primary">OU</span>NCER
         </Link>
 
         <div className="flex items-center">

@@ -16,8 +16,8 @@ import DashboardLayout from "./layouts/DashboardLayout";
 import Apps from "./pages/dashboard/Apps";
 import Overview from "./pages/dashboard/Overview";
 import NewApp from "./pages/dashboard/NewApp";
-import DashboardApp from "./pages/dashboard/App";
 import AppUsers from "./pages/dashboard/AppUsers";
+import AppOverview from "./pages/dashboard/AppOverview";
 
 function App() {
   const {
@@ -106,7 +106,7 @@ function App() {
               <Route path="/dashboard" element={<DashboardLayout />}>
                 <Route index element={<Overview />} />
                 <Route path="apps" element={<Apps />} />
-                <Route path="apps/:appId" element={<DashboardApp />} />
+                <Route path="apps/:appId" element={<AppOverview />} />
                 <Route path="apps/:appId/users" element={<AppUsers />} />
               </Route>
               <Route path="/dashboard/apps/new" element={<NewApp />} />
