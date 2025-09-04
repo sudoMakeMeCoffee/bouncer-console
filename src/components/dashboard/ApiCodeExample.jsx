@@ -3,27 +3,50 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const fetchExample = `
-fetch("https://api.example.com/users", {
+fetch("https://api.example.com/api/v1/users/register", {
   method: "POST",
   headers: {
-    "Content-Type": "application/json"
+    "Content-Type": "application/json",
+    "x-api-key": "YOUR_CLIENT_APP_API_KEY" // 🔑 replace with your API key
   },
-  body: JSON.stringify({ email: "test@example.com", password: "12345678" })
+  body: JSON.stringify({
+    email: "test@example.com",
+    password: "12345678"
+  })
 })
-  .then(res => res.json())
-  .then(data => console.log(data))
-  .catch(err => console.error(err));
+  .then(res => {
+    if (!res.ok) {
+      return res.json().then(err => {
+        throw new Error(err.message || "Failed to register user");
+      });
+    }
+    return res.json();
+  })
+  .then(data => console.log("✅ User registered:", data))
+  .catch(err => console.error("❌ Error:", err.message));
+
 `;
 
 const axiosExample = `
 import axios from "axios";
 
-axios.post("https://api.example.com/users", {
-  email: "test@example.com",
-  password: "12345678"
-}, { withCredentials: true })
-  .then(res => console.log(res.data))
-  .catch(err => console.error(err));
+axios.post(
+  "https://api.example.com/api/v1/users/register",
+  {
+    email: "test@example.com",
+    password: "12345678"
+  },
+  {
+    headers: {
+      "x-api-key": "YOUR_CLIENT_APP_API_KEY" // 🔑 replace with your API key
+    }
+  }
+)
+  .then(res => console.log("✅ User registered:", res.data))
+  .catch(err => {
+    console.error("❌ Error:", err.response?.data || err.message);
+  });
+
 `;
 
 const ApiCodeExample = () => {
