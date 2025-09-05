@@ -52,20 +52,6 @@ const Overview = () => {
           </Link>
         </div>
 
-        {/* <div className="bg-[#212126] p-6 rounded-xl shadow-md border border-gray-700 flex flex-col gap-4 hover:shadow-xl transition">
-          <div className="flex items-center gap-3 text-white">
-            <FaUsers className="text-2xl text-green-400" />
-            <span className="text-lg font-semibold">Users</span>
-          </div>
-          <span className="text-3xl font-bold text-white">{dashboardData?.appsCount}</span>
-          <Link
-            to="/dashboard/users"
-            className="text-sm text-green-400 hover:underline mt-auto"
-          >
-            See all users
-          </Link>
-        </div> */}
-
         <div className="bg-[#212126] p-6 rounded-xl shadow-md border border-gray-700 flex flex-col gap-4 hover:shadow-xl transition">
           <div className="flex items-center gap-3 text-white">
             <FaChartLine className="text-2xl text-yellow-400" />
