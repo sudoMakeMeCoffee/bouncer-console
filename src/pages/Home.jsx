@@ -6,7 +6,6 @@ import FeatureCard from "../components/FeatureCard";
 import HowItWorks from "../components/HowItWorks";
 import CTASection from "../components/CTASection";
 import Footer from "../components/Footer";
-import CodeBlock from "../components/CodeBlock";
 
 const Home = () => {
 

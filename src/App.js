@@ -19,6 +19,7 @@ import NewApp from "./pages/dashboard/NewApp";
 import AppUsers from "./pages/dashboard/AppUsers";
 import AppOverview from "./pages/dashboard/AppOverview";
 import Start from "./pages/dashboard/Start";
+import Signup from "./pages/Signup";
 
 function App() {
   const {
@@ -105,6 +106,7 @@ function App() {
         >
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/signup" element={<Signup/>}/>
             <Route path="/verification/:type" element={<Verification />} />
             <Route element={<ProtectedRoute allowedRoles={["CLIENT"]} />}>
               <Route path="/dashboard" element={<DashboardLayout />}>

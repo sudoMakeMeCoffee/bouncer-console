@@ -1,18 +1,19 @@
 import { useEffect } from "react";
-import { useLocation, Outlet } from "react-router-dom";
+import { useLocation, Outlet, useNavigate } from "react-router-dom";
 import useAuthStore from "../store/useAuthStore";
 import useAuthFormStore from "../store/useAuthFormStore";
 
 const ProtectedRoute = ({ allowedRoles, requireVerified = false }) => {
+  const navigate = useNavigate();
   const { isAuthenticated, user, loading } = useAuthStore();
-  const { openLogin } = useAuthFormStore();
   const location = useLocation();
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
-      openLogin();
+      navigate(`/login?origin=${(location.pathname)}`);
+  
     }
-  }, [loading, isAuthenticated, openLogin]);
+  }, [loading, isAuthenticated]);
 
   if (loading) {
     return null; // or <Spinner />

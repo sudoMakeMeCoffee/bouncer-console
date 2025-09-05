@@ -37,7 +37,7 @@ const Overview = () => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-[#212126] p-6 rounded-xl shadow-md border border-gray-700 flex flex-col gap-4 hover:shadow-xl transition">
           <div className="flex items-center gap-3 text-white">
             <FaServer className="text-2xl text-blue-400" />

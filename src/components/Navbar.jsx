@@ -55,12 +55,7 @@ const Navbar = () => {
           B<span className="text-primary">OU</span>NCER
         </Link>
 
-        {/* Desktop Links */}
-        <div className="items-center gap-4 text-sm hidden sm:flex">
-          <span className="cursor-pointer">Products</span>
-          <span className="cursor-pointer">Solutions</span>
-          <span className="cursor-pointer">Docs</span>
-        </div>
+        
 
         {/* Auth Buttons */}
         <div className="flex items-center gap-5">
