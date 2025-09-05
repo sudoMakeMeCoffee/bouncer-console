@@ -21,63 +21,19 @@ import AppOverview from "./pages/dashboard/AppOverview";
 import Start from "./pages/dashboard/Start";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
+import { checkAuth } from "./services/authSerive";
+import AuthRoute from "./components/AuthRoute";
 
 function App() {
-  const {
-    openSignup,
-    openLogin,
-    isSignupOpen,
-    isLoginOpen,
-    isInfoOpen,
-    closeSignup,
-    closeLogin,
-    closeInfo,
-  } = useAuthFormStore();
+  const { isSignupOpen, isLoginOpen, isInfoOpen, closeSignup, closeLogin } =
+    useAuthFormStore();
 
   const { isAuthenticated, user, setIsAuthenticated, setUser, setLoading } =
     useAuthStore();
 
   useEffect(() => {
     document.documentElement.classList.add("dark");
-    axios
-      .post(API_URL + "/auth/client/check-auth", {}, { withCredentials: true })
-      .then((res) => {
-        setIsAuthenticated(true);
-        setUser(res.data.data);
-      })
-      .catch(async (error) => {
-
-        console.log(error)
-        if (error.response?.status === 401) {
-          // Try refresh token
-          try {
-            await axios.post(
-              API_URL + "/auth/client/refresh",
-              {},
-              { withCredentials: true }
-            );
-            // Retry check-auth after refresh success
-            const retryRes = await axios.post(
-              API_URL + "/auth/client/check-auth",
-              {},
-              { withCredentials: true }
-            );
-            setIsAuthenticated(true);
-            setUser(retryRes.data.data);
-          } catch (e){
-            // Refresh failed — log out user
-            console.log(e)
-            setIsAuthenticated(false);
-            setUser(null);
-          }
-        } else {
-          setIsAuthenticated(false);
-          setUser(null);
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+    checkAuth(setIsAuthenticated, setUser, setLoading);
   }, []);
 
   useEffect(() => {
@@ -107,8 +63,11 @@ function App() {
         >
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/signup" element={<Signup/>}/>
-            <Route path="/login" element={<Login/>}/>
+            <Route element={<AuthRoute />}>
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/login" element={<Login />} />
+            </Route>
+
             <Route path="/verification/:type" element={<Verification />} />
             <Route element={<ProtectedRoute allowedRoles={["CLIENT"]} />}>
               <Route path="/dashboard" element={<DashboardLayout />}>

@@ -11,6 +11,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const { openInfo } = useAuthFormStore();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -106,7 +107,7 @@ const Signup = () => {
       .post(API_URL + "/auth/client/signup", data, { withCredentials: true })
       .then((res) => {
         setIsLoading(false);
-        setErrors((prev) => ({ ...prev, apiError: res.data.error }));
+        openInfo("Verification Link Sent","A verification link has been sent to your email. Please check your inbox.");
       })
       .catch((err) => {
         setIsLoading(false);

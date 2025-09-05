@@ -6,9 +6,15 @@ import { RiErrorWarningLine } from "react-icons/ri";
 import useAuthFormStore from "../store/useAuthFormStore";
 import { API_URL } from "../Consts";
 import axios from "axios";
+import { toast } from "sonner";
+import { useParams } from "react-router-dom";
+import { checkAuth } from "../services/authSerive";
+import useAuthStore from "../store/useAuthStore";
 
 const LoginForm = () => {
   const { openSignup, closeLogin } = useAuthFormStore();
+  const { isAuthenticated, user, setIsAuthenticated, setUser, setLoading } =
+    useAuthStore();
   const [touched, setTouched] = useState(false);
 
   const [data, setData] = useState({
@@ -67,8 +73,10 @@ const LoginForm = () => {
       .post(API_URL + "/auth/client/login", data, { withCredentials: true })
       .then((res) => {
         setIsLoading(false);
+        closeLogin();
+        toast.success("Logged in successfully!");
+        checkAuth(setIsAuthenticated, setUser, setLoading);
         console.log(res);
-        setErrors((prev) => ({ ...prev, apiError: res.data.error }));
       })
       .catch((err) => {
         setIsLoading(false);
