@@ -26,7 +26,7 @@ const Apps = () => {
 
   return (
     <div className="w-full">
-      <h1 className="text-2xl">Applications</h1>
+      <h1 className="text-2xl mb-6">Applications</h1>
 
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {apps.map((app) => (
@@ -34,9 +34,9 @@ const Apps = () => {
         ))}
         <Link
           to="/dashboard/apps/new"
-          className=" bg-[#212126] rounded-md mt-4 p-4 flex items-center justify-center border border-dotted"
+          className="relative bg-[#212126] rounded-xl p-6 border border-gray-700 border-dashed shadow-md hover:shadow-xl transition-all flex items-center justify-center"
         >
-          <span className="text-sm flex items-center gap-2">
+          <span className="text-lg font-semibold text-white flex items-center gap-2">
             <FaPlus /> New Application
           </span>
         </Link>
