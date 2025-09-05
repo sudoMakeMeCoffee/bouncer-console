@@ -117,7 +117,7 @@ const SignupForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-secondary outline outline-[0.1px] outline-gray-700 w-full max-w-[400px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[1000]
+      className="bg-secondary md:outline outline-[0.1px] outline-gray-700 w-full h-full md:h-auto md:max-w-[400px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[1000]
      p-8 flex flex-col gap-4 rounded-md"
     >
       <div className="flex items-center justify-between mb-4">
@@ -137,9 +137,9 @@ const SignupForm = () => {
       </div>
 
       <div className="flex items-center gap-2">
-        <div className="flex-grow border-t border-gray-700"></div>
+        <div className="flex-grow  border-t-[0.1px] border-gray-800"></div>
         <span className="text-xs text-gray-500">or</span>
-        <div className="flex-grow border-t border-gray-700"></div>
+        <div className="flex-grow  border-t-[0.1px] border-gray-800"></div>
       </div>
 
       {errors.apiError && (
@@ -199,7 +199,7 @@ const SignupForm = () => {
         {isLoading ? "Signing Up..." : "Sign Up"}
       </button>
 
-      <div className="flex-grow border-t border-gray-700 mt-4"></div>
+      <div className="flex  border-t-[0.1px] border-gray-800 mt-4"></div>
 
       <p className="text-xs text-center text-gray-500">
         Already have an account?{" "}

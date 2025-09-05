@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
+import profileIcon from "../../assets/images/profile-icon.png"
 import { HiBars2 } from "react-icons/hi2";
 import clsx from "clsx";
 import axios from "axios";
@@ -91,9 +92,9 @@ const Navbar = () => {
 
         <div className="flex items-center gap-4">
           <img
-            src={`https://avatar.iran.liara.run/username?username=${user.username}`}
+            src={profileIcon}
             alt={user.username}
-            className="w-[40px] h-[40px] cursor-pointer rounded-full"
+            className="w-[30px] h-[30px] cursor-pointer rounded-full"
           />
         </div>
       </div>

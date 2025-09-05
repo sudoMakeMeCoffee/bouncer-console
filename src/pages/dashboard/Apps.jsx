@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../../Consts";
 import AppCard from "../../components/dashboard/AppCard";
+import { checkAuth } from "../../services/authSerive";
 
 const Apps = () => {
   const [apps, setApps] = useState([]);
