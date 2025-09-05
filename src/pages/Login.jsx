@@ -7,15 +7,22 @@ import useAuthFormStore from "../store/useAuthFormStore";
 import { API_URL } from "../Consts";
 import axios from "axios";
 import { FaArrowLeft } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { toast } from "sonner";
+import { checkAuth } from "../services/authSerive";
+import useAuthStore from "../store/useAuthStore";
 
 const Login = () => {
+  const { origin } = useParams();
+  console.log(origin)
   const navigate = useNavigate();
 
-  const handleBack = () => {
-    navigate(-1); 
-  };
+  const { setIsAuthenticated, setUser, setLoading } =
+    useAuthStore();
 
+  const handleBack = () => {
+    navigate(-1);
+  };
 
   const [touched, setTouched] = useState(false);
 
@@ -75,8 +82,12 @@ const Login = () => {
       .post(API_URL + "/auth/client/login", data, { withCredentials: true })
       .then((res) => {
         setIsLoading(false);
+        toast.success("Logged in successfully!");
+        checkAuth(setIsAuthenticated, setUser, setLoading);
+        if (origin) {
+          navigate(origin);
+        } else navigate("/");
         console.log(res);
-        setErrors((prev) => ({ ...prev, apiError: res.data.error }));
       })
       .catch((err) => {
         setIsLoading(false);

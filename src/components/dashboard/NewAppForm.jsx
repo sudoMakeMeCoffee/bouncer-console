@@ -5,8 +5,11 @@ import { API_URL } from "../../Consts";
 import axios from "axios";
 import { BiLeftArrow } from "react-icons/bi";
 import { FaArrowLeft } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const NewAppForm = () => {
+  const navigate = useNavigate()
   const [touched, setTouched] = useState(false);
 
   const [data, setData] = useState({
@@ -57,8 +60,9 @@ const NewAppForm = () => {
       .post(API_URL + "/client/app", data, { withCredentials: true })
       .then((res) => {
         setIsLoading(false);
+        toast.success(`Your App '${data.name}' created.`)
+        navigate(`/dashboard/apps/${res.data.data.id}`)
         console.log(res);
-        setErrors((prev) => ({ ...prev, apiError: res.data.error }));
       })
       .catch((err) => {
         setIsLoading(false);
