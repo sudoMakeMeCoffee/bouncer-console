@@ -25,8 +25,10 @@ const Apps = () => {
   };
 
   return (
-    <div className="w-full">
-      <h1 className="text-2xl mb-6">Applications</h1>
+    <div className="w-full flex flex-col gap-8 p-6">
+      <div>
+        <h1 className="text-3xl font-bold text-white">Applications</h1>
+      </div>
 
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
         {apps.map((app) => (
