@@ -18,6 +18,7 @@ import Overview from "./pages/dashboard/Overview";
 import NewApp from "./pages/dashboard/NewApp";
 import AppUsers from "./pages/dashboard/AppUsers";
 import AppOverview from "./pages/dashboard/AppOverview";
+import Start from "./pages/dashboard/Start";
 
 function App() {
   const {
@@ -111,6 +112,7 @@ function App() {
                 <Route path="apps" element={<Apps />} />
                 <Route path="apps/:appId" element={<AppOverview />} />
                 <Route path="apps/:appId/users" element={<AppUsers />} />
+                <Route path="apps/:appId/start" element={<Start />} />
               </Route>
               <Route path="/dashboard/apps/new" element={<NewApp />} />
             </Route>

@@ -55,6 +55,21 @@ const TopNavTabs = () => {
           </NavLink>
 
           <NavLink
+            to={`/dashboard/apps/${appId}/start`}
+            end
+            className={({ isActive }) =>
+              clsx(
+                "h-full flex items-center px-1",
+                isActive
+                  ? "border-b-2 border-white text-white"
+                  : "text-gray-400"
+              )
+            }
+          >
+            Start
+          </NavLink>
+
+          <NavLink
             to={`/dashboard/apps/${appId}/users`}
             className={({ isActive }) =>
               clsx(
