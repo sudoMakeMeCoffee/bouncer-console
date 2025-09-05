@@ -8,7 +8,7 @@ import axios from "axios";
 import { API_URL } from "../Consts";
 import { toast } from "sonner";
 import { FaArrowLeft } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -214,9 +214,9 @@ const Signup = () => {
 
       <p className="text-xs text-center text-gray-500">
         Already have an account?{" "}
-        <button type="button" className="text-[#00B2FF] underline">
-          Log in
-        </button>
+        <Link to={"/login"} className="text-[#00B2FF] underline">
+         Login
+        </Link>
       </p>
 
       <p className="text-[10px] text-gray-500 text-center">
