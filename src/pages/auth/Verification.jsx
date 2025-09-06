@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams, useLocation } from "react-router-dom";
-import NotFound from "./NotFound";
+import NotFound from "../public/NotFound";
 import { IoWarning } from "react-icons/io5";
 
 function useQuery() {
@@ -38,7 +38,7 @@ const Verification = () => {
     );
   }
 
-  if(valid && !expired){
+  if (valid && !expired) {
     return (
       <div className="text-white flex flex-col items-center justify-center h-screen">
         <h1 className="text-2xl font-semibold mb-4">Verification Successful</h1>

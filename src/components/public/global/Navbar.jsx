@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { HiBars2 } from "react-icons/hi2";
 import clsx from "clsx";
 
-import useAuthFormStore from "../../store/useAuthFormStore";
-import useAuthStore from "../../store/useAuthStore";
+import useAuthFormStore from "../../../store/useAuthFormStore";
+import useAuthStore from "../../../store/useAuthStore";
 import axios from "axios";
-import { API_URL } from "../../Consts";
+import { API_URL } from "../../../Consts";
 
 const NAVBAR_HEIGHT = 64;
 

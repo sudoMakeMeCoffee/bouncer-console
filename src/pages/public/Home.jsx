@@ -1,11 +1,9 @@
-import React from "react";
-import Navbar from "../../components/public/Navbar";
-import DotGrid from "../../components/public/DotGrid";
-import Hero from "../../components/public/Hero";
-import FeatureCard from "../../components/public/FeatureCard";
-import HowItWorks from "../../components/public/HowItWorks";
-import CTASection from "../../components/public/CTASection";
-import Footer from "../../components/public/Footer";
+import CTASection from "../../components/public/home/CTASection";
+import DotGrid from "../../components/public/home/DotGrid";
+import FeatureCard from "../../components/public/home/FeatureCard";
+import Hero from "../../components/public/home/Hero";
+import HowItWorks from "../../components/public/home/HowItWorks";
+import Footer from "../../components/public/global/Footer";
 
 const Home = () => {
   return (

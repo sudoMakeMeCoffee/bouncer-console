@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import Navbar from "../components/public/Navbar";
-
+import Navbar from "../components/public/global/Navbar";
 const PublicLayout = () => {
   useEffect(() => {
     document.title = `Bouncer.com`;

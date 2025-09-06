@@ -1,7 +1,7 @@
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
-import useAuthStore from "../../store/useAuthStore";
+import useAuthStore from "../../../store/useAuthStore";
 
 const Hero = () => {
   const navigate = useNavigate();

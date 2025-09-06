@@ -3,8 +3,7 @@ import { useRef, useEffect, useCallback, useMemo } from "react";
 import { gsap } from "gsap";
 import { InertiaPlugin } from "gsap/InertiaPlugin";
 
-import "../../DotGrid.css"; // Assuming you have a CSS file for styles
-
+import "../../../DotGrid.css";
 gsap.registerPlugin(InertiaPlugin);
 
 const throttle = (func, limit) => {

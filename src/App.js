@@ -1,12 +1,11 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./pages/public/Home";
 import { useEffect, useState } from "react";
-import SignupForm from "./components/public/SignupForm";
+import SignupForm from "./components/auth/SignupForm";
 import useAuthFormStore from "./store/useAuthFormStore";
-import LoginForm from "./components/public/LoginForm";
-import Verification from "./pages/public/Verification";
+import LoginForm from "./components/auth/LoginForm";
+import Verification from "./pages/auth/Verification";
 import { Toaster } from "sonner";
-import InfoCard from "./components/public/InfoCard";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import useAuthStore from "./store/useAuthStore";
 import DashboardLayout from "./layouts/DashboardLayout";
@@ -16,8 +15,8 @@ import NewApp from "./pages/dashboard/NewApp";
 import AppUsers from "./pages/dashboard/AppUsers";
 import AppOverview from "./pages/dashboard/AppOverview";
 import Start from "./pages/dashboard/Start";
-import Signup from "./pages/public/Signup";
-import Login from "./pages/public/Login";
+import Signup from "./pages/auth/Signup";
+import Login from "./pages/auth/Login";
 import { checkAuth } from "./services/authSerive";
 import AuthRoute from "./routes/AuthRoute";
 import Docs from "./pages/public/Docs";
@@ -108,20 +107,6 @@ function App() {
               onClick={(e) => e.stopPropagation()}
             >
               <LoginForm />
-            </div>
-          </div>
-        )}
-
-        {isInfoOpen && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-md"
-            onClick={closeLogin}
-          >
-            <div
-              className="bg-white dark:bg-secondary text-black dark:text-white p-6 rounded-lg w-full max-w-md mx-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <InfoCard />
             </div>
           </div>
         )}

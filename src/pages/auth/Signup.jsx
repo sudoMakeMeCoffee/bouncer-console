@@ -14,8 +14,10 @@ const Signup = () => {
   const navigate = useNavigate();
 
   const handleBack = () => {
-    navigate("/"); // Go back to the previous page
+    navigate("/"); 
   };
+
+  
   const [data, setData] = useState({
     username: "",
     email: "",
