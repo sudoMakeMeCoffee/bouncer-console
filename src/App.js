@@ -23,6 +23,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import { checkAuth } from "./services/authSerive";
 import AuthRoute from "./components/AuthRoute";
+import Docs from "./pages/Docs";
 
 function App() {
   const { isSignupOpen, isLoginOpen, isInfoOpen, closeSignup, closeLogin } =
@@ -63,6 +64,7 @@ function App() {
         >
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/docs" element={<Docs />} />
             <Route element={<AuthRoute />}>
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />

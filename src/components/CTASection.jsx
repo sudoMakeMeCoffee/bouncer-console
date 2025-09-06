@@ -12,7 +12,7 @@ const CTASection = () => {
         and secure API keys.
       </p>
       <div className="flex gap-4">
-        <Link className="btn-primary btn-lg">Start Free</Link>
+        <Link className="btn-primary btn-md">Start Free</Link>
         <Link className="text-sm text-white flex gap-2 items-center hover:text-primary transition">
           Documentation
         </Link>
