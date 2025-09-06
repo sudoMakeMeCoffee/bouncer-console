@@ -1,17 +1,15 @@
 import React from "react";
-import Navbar from "../components/Navbar";
-import DotGrid from "../components/DotGrid";
-import Hero from "../components/Hero";
-import FeatureCard from "../components/FeatureCard";
-import HowItWorks from "../components/HowItWorks";
-import CTASection from "../components/CTASection";
-import Footer from "../components/Footer";
+import Navbar from "../../components/public/Navbar";
+import DotGrid from "../../components/public/DotGrid";
+import Hero from "../../components/public/Hero";
+import FeatureCard from "../../components/public/FeatureCard";
+import HowItWorks from "../../components/public/HowItWorks";
+import CTASection from "../../components/public/CTASection";
+import Footer from "../../components/public/Footer";
 
 const Home = () => {
-
   return (
     <>
-      <Navbar />
       <div className="relative">
         <div className="relative w-full h-[600px] md:h-[650px]">
           <DotGrid

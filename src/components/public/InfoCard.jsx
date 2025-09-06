@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { MdEmail } from "react-icons/md";
-import useAuthFormStore from "../store/useAuthFormStore";
+import useAuthFormStore from "../../store/useAuthFormStore";
 import axios from "axios";
-import { API_URL } from "../Consts";
+import { API_URL } from "../../Consts";
 import { toast } from "sonner";
 import { ClipLoader } from "react-spinners";
 

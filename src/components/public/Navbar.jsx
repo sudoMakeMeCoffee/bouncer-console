@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import { HiBars2 } from "react-icons/hi2";
 import clsx from "clsx";
 
-import useAuthFormStore from "../store/useAuthFormStore";
-import useAuthStore from "../store/useAuthStore";
+import useAuthFormStore from "../../store/useAuthFormStore";
+import useAuthStore from "../../store/useAuthStore";
 import axios from "axios";
-import { API_URL } from "../Consts";
+import { API_URL } from "../../Consts";
 
 const NAVBAR_HEIGHT = 64;
 
@@ -54,8 +54,6 @@ const Navbar = () => {
         <Link to="/" className="font-bold text-md">
           B<span className="text-primary">OU</span>NCER
         </Link>
-
-        
 
         {/* Auth Buttons */}
         <div className="flex items-center gap-5">

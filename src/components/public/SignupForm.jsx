@@ -3,21 +3,17 @@ import { CgClose } from "react-icons/cg";
 import { FcGoogle } from "react-icons/fc";
 import { GrGithub } from "react-icons/gr";
 import { RiErrorWarningLine } from "react-icons/ri";
-import useAuthFormStore from "../store/useAuthFormStore";
+import useAuthFormStore from "../../store/useAuthFormStore";
 import axios from "axios";
-import { API_URL } from "../Consts";
+import { API_URL } from "../../Consts";
 import { toast } from "sonner";
-import { FaArrowLeft } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const Signup = () => {
-  const { openInfo } = useAuthFormStore();
-  const [isLoading, setIsLoading] = useState(false);
+const SignupForm = () => {
   const navigate = useNavigate();
+  const { openLogin, closeSignup, openInfo } = useAuthFormStore();
 
-  const handleBack = () => {
-    navigate("/"); // Go back to the previous page
-  };
+  const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState({
     username: "",
     email: "",
@@ -107,7 +103,12 @@ const Signup = () => {
       .post(API_URL + "/auth/client/signup", data, { withCredentials: true })
       .then((res) => {
         setIsLoading(false);
-        openInfo("Verification Link Sent","A verification link has been sent to your email. Please check your inbox.");
+        closeSignup();
+        openLogin();
+        toast.info(
+          "A verification link has been sent to your email. Please check your inbox."
+        );
+        setErrors((prev) => ({ ...prev, apiError: res.data.error }));
       })
       .catch((err) => {
         setIsLoading(false);
@@ -122,20 +123,13 @@ const Signup = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-secondary md:outline outline-[0.1px] outline-gray-700 w-full md:max-w-[400px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[1000]
+      className="bg-secondary md:outline outline-[0.1px] outline-gray-700 w-full h-full md:h-auto md:max-w-[400px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[1000]
      p-8 flex flex-col gap-4 rounded-md"
     >
       <div className="flex items-center justify-between mb-4">
-        <button
-          onClick={handleBack}
-          className="flex items-center text-xs gap-2 text-white hover:text-gray-300 w-fit"
-        >
-          <FaArrowLeft />
-          <span>Back</span>
-        </button>
+        <h1 className="text-md">Signup with</h1>
+        <CgClose className="cursor-pointer" onClick={closeSignup} />
       </div>
-      
-      <h1 className="text-md">Sign up with</h1>
 
       <div className="flex items-center gap-4">
         <div className="w-full text-xs bg-transparent border border-gray-700 rounded-md px-3 py-3 flex items-center justify-center gap-2 cursor-pointer">
@@ -149,9 +143,9 @@ const Signup = () => {
       </div>
 
       <div className="flex items-center gap-2">
-        <div className="flex-grow border-t border-gray-700"></div>
+        <div className="flex-grow  border-t-[0.1px] border-gray-800"></div>
         <span className="text-xs text-gray-500">or</span>
-        <div className="flex-grow border-t border-gray-700"></div>
+        <div className="flex-grow  border-t-[0.1px] border-gray-800"></div>
       </div>
 
       {errors.apiError && (
@@ -211,13 +205,17 @@ const Signup = () => {
         {isLoading ? "Signing Up..." : "Sign Up"}
       </button>
 
-      <div className="flex-grow border-t border-gray-700 mt-4"></div>
+      <div className="flex  border-t-[0.1px] border-gray-800 mt-4"></div>
 
       <p className="text-xs text-center text-gray-500">
         Already have an account?{" "}
-        <Link to={"/login"} className="text-[#00B2FF] underline">
-         Login
-        </Link>
+        <button
+          type="button"
+          onClick={openLogin}
+          className="text-[#00B2FF] underline"
+        >
+          Log in
+        </button>
       </p>
 
       <p className="text-[10px] text-gray-500 text-center">
@@ -232,4 +230,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignupForm;

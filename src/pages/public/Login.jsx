@@ -3,18 +3,26 @@ import { CgClose } from "react-icons/cg";
 import { FcGoogle } from "react-icons/fc";
 import { GrGithub } from "react-icons/gr";
 import { RiErrorWarningLine } from "react-icons/ri";
-import useAuthFormStore from "../store/useAuthFormStore";
-import { API_URL } from "../Consts";
+import useAuthFormStore from "../../store/useAuthFormStore";
+import { API_URL } from "../../Consts";
 import axios from "axios";
+import { FaArrowLeft } from "react-icons/fa";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "sonner";
-import { useParams } from "react-router-dom";
-import { checkAuth } from "../services/authSerive";
-import useAuthStore from "../store/useAuthStore";
+import { checkAuth } from "../../services/authSerive";
+import useAuthStore from "../../store/useAuthStore";
 
-const LoginForm = () => {
-  const { openSignup, closeLogin } = useAuthFormStore();
-  const { isAuthenticated, user, setIsAuthenticated, setUser, setLoading } =
-    useAuthStore();
+const Login = () => {
+  const { origin } = useParams();
+  console.log(origin);
+  const navigate = useNavigate();
+
+  const { setIsAuthenticated, setUser, setLoading } = useAuthStore();
+
+  const handleBack = () => {
+    navigate("/");
+  };
+
   const [touched, setTouched] = useState(false);
 
   const [data, setData] = useState({
@@ -73,9 +81,11 @@ const LoginForm = () => {
       .post(API_URL + "/auth/client/login", data, { withCredentials: true })
       .then((res) => {
         setIsLoading(false);
-        closeLogin();
         toast.success("Logged in successfully!");
         checkAuth(setIsAuthenticated, setUser, setLoading);
+        if (origin) {
+          navigate(origin);
+        } else navigate("/dashboard");
         console.log(res);
       })
       .catch((err) => {
@@ -91,13 +101,20 @@ const LoginForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-secondary md:outline outline-[0.1px] outline-gray-700 w-full h-full md:h-auto  md:max-w-[400px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[1000]
-     p-8 flex flex-col  gap-4 rounded-md"
+      className="bg-secondary md:outline outline-[0.1px] outline-gray-700 w-full md:max-w-[400px] absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] z-[1000]
+     p-8 flex flex-col gap-4 rounded-md"
     >
       <div className="flex items-center justify-between mb-4">
-        <h1 className="text-md">Login with</h1>
-        <CgClose className="cursor-pointer" onClick={closeLogin} />
+        <button
+          onClick={handleBack}
+          className="flex items-center text-xs gap-2 text-white hover:text-gray-300 w-fit"
+        >
+          <FaArrowLeft />
+          <span>Back</span>
+        </button>
       </div>
+
+      <h1 className="text-md">Log in with</h1>
 
       <div className="flex items-center gap-4">
         <button
@@ -115,12 +132,6 @@ const LoginForm = () => {
           <GrGithub />
           <span className="text-gray-500">Github</span>
         </button>
-      </div>
-
-      <div className="flex items-center gap-2">
-        <div className="flex-grow  border-t-[0.1px] border-gray-800"></div>
-        <span className="text-xs text-gray-500">or</span>
-        <div className="flex-grow  border-t-[0.1px] border-gray-800"></div>
       </div>
 
       {errors.apiError && (
@@ -163,7 +174,8 @@ const LoginForm = () => {
       >
         {isLoading ? "Logging in..." : "Log in"}
       </button>
-      <div className=" border-t-[0.1px] border-gray-800 mt-4"></div>
+
+      <div className="flex-grow border-t border-gray-700 mt-4"></div>
 
       <p className="text-xs text-center text-gray-500">
         <button type="button" className="text-[#00B2FF] underline">
@@ -173,16 +185,12 @@ const LoginForm = () => {
 
       <p className="text-xs text-center text-gray-500">
         Don't have an account?{" "}
-        <button
-          type="button"
-          onClick={openSignup}
-          className="text-[#00B2FF] underline"
-        >
+        <Link to={"/signup"} className="text-[#00B2FF] underline">
           Sign up
-        </button>
+        </Link>
       </p>
     </form>
   );
 };
 
-export default LoginForm;
+export default Login;

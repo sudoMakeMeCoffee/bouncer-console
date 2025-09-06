@@ -1,13 +1,13 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
+import Home from "./pages/public/Home";
 import { useEffect, useState } from "react";
-import SignupForm from "./components/SignupForm";
+import SignupForm from "./components/public/SignupForm";
 import useAuthFormStore from "./store/useAuthFormStore";
-import LoginForm from "./components/LoginForm";
-import Verification from "./pages/Verification";
+import LoginForm from "./components/public/LoginForm";
+import Verification from "./pages/public/Verification";
 import { Toaster } from "sonner";
-import InfoCard from "./components/InfoCard";
-import ProtectedRoute from "./components/ProtectedRoute";
+import InfoCard from "./components/public/InfoCard";
+import ProtectedRoute from "./routes/ProtectedRoute";
 import useAuthStore from "./store/useAuthStore";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Apps from "./pages/dashboard/Apps";
@@ -16,11 +16,12 @@ import NewApp from "./pages/dashboard/NewApp";
 import AppUsers from "./pages/dashboard/AppUsers";
 import AppOverview from "./pages/dashboard/AppOverview";
 import Start from "./pages/dashboard/Start";
-import Signup from "./pages/Signup";
-import Login from "./pages/Login";
+import Signup from "./pages/public/Signup";
+import Login from "./pages/public/Login";
 import { checkAuth } from "./services/authSerive";
-import AuthRoute from "./components/AuthRoute";
-import Docs from "./pages/Docs";
+import AuthRoute from "./routes/AuthRoute";
+import Docs from "./pages/public/Docs";
+import PublicLayout from "./layouts/PublicLayout";
 
 function App() {
   const { isSignupOpen, isLoginOpen, isInfoOpen, closeSignup, closeLogin } =
@@ -59,8 +60,10 @@ function App() {
           }`}
         >
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/docs" element={<Docs />} />
+            <Route path="/" element={<PublicLayout />}>
+              <Route index element={<Home />} />
+              <Route path="/docs" element={<Docs />} />
+            </Route>
             <Route element={<AuthRoute />}>
               <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />

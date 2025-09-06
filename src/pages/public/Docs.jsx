@@ -1,7 +1,14 @@
 import React, { useState } from "react";
-import { FaBook, FaCode, FaRocket, FaCopy, FaCheck, FaQuestionCircle } from "react-icons/fa";
+import {
+  FaBook,
+  FaCode,
+  FaRocket,
+  FaCopy,
+  FaCheck,
+  FaQuestionCircle,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/public/Navbar";
 
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -35,8 +42,7 @@ const Docs = () => {
   ];
 
   return (
-    <>
-      <Navbar />
+    
       <div className="bg-[#121216] min-h-screen pt-[100px] pb-[40px] px-6">
         {/* Header */}
         <div className="max-w-6xl mx-auto text-center mb-12">
@@ -159,7 +165,6 @@ client.auth.verify("user_token")
           </p>
         </footer>
       </div>
-    </>
   );
 };
 

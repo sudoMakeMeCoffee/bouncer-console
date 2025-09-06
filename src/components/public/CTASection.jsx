@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import useAuthFormStore from "../store/useAuthFormStore";
+import useAuthFormStore from "../../store/useAuthFormStore";
 
 const CTASection = () => {
   const navigate = useNavigate();
@@ -23,7 +23,9 @@ const CTASection = () => {
         and secure API keys.
       </p>
       <div className="flex gap-4">
-        <button className="btn-primary btn-md" onClick={startBuilding}>Start Free</button>
+        <button className="btn-primary btn-md" onClick={startBuilding}>
+          Start Free
+        </button>
         <Link
           to="/docs"
           className="text-sm text-white flex gap-2 items-center hover:text-primary transition"
