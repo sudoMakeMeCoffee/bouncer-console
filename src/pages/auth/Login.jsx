@@ -18,7 +18,11 @@ const Login = () => {
 
   const [touched, setTouched] = useState(false);
   const [data, setData] = useState({ email: "", password: "" });
-  const [errors, setErrors] = useState({ apiError: "", email: "", password: "" });
+  const [errors, setErrors] = useState({
+    apiError: "",
+    email: "",
+    password: "",
+  });
   const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e) => {
@@ -53,7 +57,9 @@ const Login = () => {
 
     setIsLoading(true);
     try {
-      const res = await axios.post(API_URL + "/auth/client/login", data, { withCredentials: true });
+      const res = await axios.post(API_URL + "/auth/client/login", data, {
+        withCredentials: true,
+      });
       toast.success("Logged in successfully!");
       checkAuth(setIsAuthenticated, setUser, setLoading);
       navigate(origin || "/dashboard");
@@ -69,10 +75,10 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#1b1b1f] to-[#111113] px-4">
+    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-[#1b1b1f] to-[#111113] md:px-4 overflow-hidden">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-md bg-[#1e1e23] rounded-2xl shadow-lg p-8 border border-gray-800 space-y-6"
+        className="w-full h-full md:max-w-md md:bg-[#1e1e23] rounded-2xl md:shadow-lg p-6 md:p-8 md:border border-gray-800 space-y-6"
       >
         {/* Back button */}
         <button
