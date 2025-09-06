@@ -12,7 +12,7 @@ const NAVBAR_HEIGHT = 64;
 
 const Navbar = () => {
   const { openSignup, openLogin } = useAuthFormStore();
-  const { isAuthenticated, user } = useAuthStore();
+  const { isAuthenticated, setLoading } = useAuthStore();
 
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -33,12 +33,17 @@ const Navbar = () => {
   }, [handleScroll]);
 
   const handleLogout = () => {
+    setLoading(true);
     axios
       .post(`${API_URL}/auth/client/logout`, {}, { withCredentials: true })
-      .then(() => (window.location.href = "/"))
-      .catch((e) => console.log(e));
+      .then(() => {
+        window.location.href = "/";
+      })
+      .catch((e) => {
+        console.log(e);
+      })
+      .finally(() => setLoading(false));
   };
-
   return (
     <nav
       className={clsx(
