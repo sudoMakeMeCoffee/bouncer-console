@@ -5,20 +5,8 @@ import { API_URL } from "../../Consts";
 import { useParams, Link } from "react-router-dom";
 import { formatDate } from "../../utils/utils";
 
-const AppUsersTable = () => {
+const AppUsersTable = ({appUsers}) => {
   const { appId } = useParams();
-  const [appUsers, setAppUsers] = useState([]);
-
-  const fetchAppUsers = () => {
-    axios
-      .get(`${API_URL}/client/app/user/${appId}`, { withCredentials: true })
-      .then((res) => setAppUsers(res.data.data || []))
-      .catch((e) => console.error(e));
-  };
-
-  useEffect(() => {
-    fetchAppUsers();
-  }, []);
 
   return (
     <table className="w-full text-left text-sm rounded-xl overflow-hidden">
@@ -30,7 +18,7 @@ const AppUsersTable = () => {
       </thead>
 
       <tbody>
-        {appUsers.length === 0 ? (
+        {appUsers?.length === 0 || !appUsers ? (
           <tr className="bg-[#1E1E22]">
             <td colSpan={2} className="text-center p-6 text-gray-400">
               No users found.{" "}
@@ -43,7 +31,7 @@ const AppUsersTable = () => {
             </td>
           </tr>
         ) : (
-          appUsers.map((user) => (
+          appUsers?.map((user) => (
             <tr
               key={user.id}
               className="bg-[#1E1E22] hover:bg-[#2a2a2f] transition-colors"

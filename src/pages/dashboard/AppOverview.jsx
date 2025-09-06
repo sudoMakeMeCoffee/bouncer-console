@@ -2,24 +2,37 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
 import { API_URL } from "../../Consts";
-import { FiCopy, FiEye, FiEyeOff, FiCheck, FiRefreshCw } from "react-icons/fi";
+import {
+  FiCopy,
+  FiEye,
+  FiEyeOff,
+  FiCheck,
+  FiRefreshCw,
+} from "react-icons/fi";
 import { FaUsers, FaServer, FaClock } from "react-icons/fa";
 import { formatDate } from "../../utils/utils";
+import AppOverviewSkeleton from "../../components/skeletons/AppOverviewSkeleton";
 
 const AppOverview = () => {
   const { appId } = useParams();
   const [app, setApp] = useState(null);
   const [showKey, setShowKey] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const fetchApp = async () => {
+
+    
+
     try {
       const res = await axios.get(`${API_URL}/client/app/${appId}`, {
         withCredentials: true,
       });
       setApp(res.data.data);
+      setLoading(false);
     } catch (e) {
       console.error(e);
+      setLoading(false);
     }
   };
 
@@ -35,11 +48,10 @@ const AppOverview = () => {
   };
 
   const handleRegenerateKey = () => {
-    // placeholder for API call to regenerate API key
     alert("API key regenerated (mock)!");
   };
 
-  if (!app) return <div className="text-gray-300 p-6">Loading...</div>;
+  if (loading || !app) return <AppOverviewSkeleton />;
 
   return (
     <div className="w-full p-4 md:p-8 flex flex-col gap-10">
@@ -167,7 +179,6 @@ const AppOverview = () => {
                 <th scope="col" className="px-4 py-3">
                   Email
                 </th>
-
                 <th scope="col" className="px-4 py-3">
                   Joined
                 </th>
@@ -181,7 +192,6 @@ const AppOverview = () => {
                     className="border-b border-gray-700 hover:bg-[#2a2a2f]"
                   >
                     <td className="px-4 py-2">{user.email}</td>
-
                     <td className="px-4 py-2">{formatDate(user.createdAt)}</td>
                   </tr>
                 ))

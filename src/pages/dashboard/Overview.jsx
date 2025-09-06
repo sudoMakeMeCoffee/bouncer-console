@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import AppCard from "../../components/dashboard/AppCard";
 import axios from "axios";
 import { API_URL } from "../../Consts";
+import OverviewSkeleton from "../../components/skeletons/OverviewSkeleton";
 
 const Overview = () => {
-  const [dashboardData, setDashboardData] = useState([]);
+  const [dashboardData, setDashboardData] = useState(null); // null means loading
 
   useEffect(() => {
     getDashboardData();
@@ -17,12 +18,15 @@ const Overview = () => {
       .get(`${API_URL}/client/dashboard`, { withCredentials: true })
       .then((res) => {
         setDashboardData(res.data.data);
-        console.log(res.data.data);
       })
       .catch((e) => {
         console.log(e);
+        setDashboardData({ appsCount: 0, clientApps: [] });
       });
   };
+
+  if (!dashboardData) return <OverviewSkeleton />; // show skeleton while loading
+
   return (
     <div className="flex flex-col gap-10 w-full p-6">
       {/* Header */}
