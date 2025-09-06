@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import ProfileIcon from "../../assets/images/profile-icon.png";
 import axios from "axios";
-import { API_URL } from "../../Consts";
+import ProfileIcon from "../../../assets/images/profile-icon.png";
+import { API_URL } from "../../../Consts";
 import { useParams, Link } from "react-router-dom";
-import { formatDate } from "../../utils/utils";
+import { formatDate } from "../../../utils/utils";
 
-const AppUsersTable = ({appUsers}) => {
+const AppUsersTable = ({ appUsers }) => {
   const { appId } = useParams();
 
   return (

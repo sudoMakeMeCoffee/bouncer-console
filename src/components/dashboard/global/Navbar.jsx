@@ -1,13 +1,12 @@
 import { useEffect, useState, useCallback } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
-import profileIcon from "../../assets/images/profile-icon.png"
+import profileIcon from "../../../assets/images/profile-icon.png"
 import { HiBars2 } from "react-icons/hi2";
 import clsx from "clsx";
 import axios from "axios";
 
-import useAuthFormStore from "../../store/useAuthFormStore";
-import useAuthStore from "../../store/useAuthStore";
-import { API_URL } from "../../Consts";
+import { API_URL } from "../../../Consts";
+import useAuthStore from "../../../store/useAuthStore";
 
 const NAVBAR_HEIGHT = 64;
 

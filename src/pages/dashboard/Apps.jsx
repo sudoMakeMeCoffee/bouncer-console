@@ -3,7 +3,7 @@ import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../../Consts";
-import AppCard from "../../components/dashboard/AppCard";
+import AppCard from "../../components/dashboard/apps/AppCard";
 import AppsSkeleton from "../../components/skeletons/AppsSkeleton";
 const Apps = () => {
   const [apps, setApps] = useState(null);
@@ -25,7 +25,7 @@ const Apps = () => {
   if (apps === null) return <AppsSkeleton />; // show skeleton while loading
 
   return (
-    <div className="w-full flex flex-col gap-8 p-6">
+    <div className="w-full flex flex-col gap-8 py-6">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold text-white">Applications</h1>
       </div>

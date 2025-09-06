@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import AppCard from "../AppCard";
+import AppCard from "../apps/AppCard";
 
 const AppsSection = ({ appsCount, clientApps }) => {
   return (
@@ -18,7 +18,10 @@ const AppsSection = ({ appsCount, clientApps }) => {
         {appsCount === 0 ? (
           <p className="text-gray-400">
             You have no applications.{" "}
-            <Link to="/dashboard/apps/new" className="text-blue-400 hover:underline">
+            <Link
+              to="/dashboard/apps/new"
+              className="text-blue-400 hover:underline"
+            >
               Create one now
             </Link>
             .

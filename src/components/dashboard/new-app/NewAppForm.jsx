@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { CgClose } from "react-icons/cg";
 import { RiErrorWarningLine } from "react-icons/ri";
-import { API_URL } from "../../Consts";
+import { API_URL } from "../../../Consts";
 import axios from "axios";
 import { BiLeftArrow } from "react-icons/bi";
 import { FaArrowLeft } from "react-icons/fa";

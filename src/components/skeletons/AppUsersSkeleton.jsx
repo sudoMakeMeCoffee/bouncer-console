@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import AppUsersTable from "../../components/dashboard/AppUsersTable";
+import AppUsersTable from "../dashboard/app-users/AppUsersTable";
 import axios from "axios";
 import { API_URL } from "../../Consts";
 import { useParams } from "react-router-dom";

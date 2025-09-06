@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import AppUsersTable from "../../components/dashboard/AppUsersTable";
+import AppUsersTable from "../../components/dashboard/app-users/AppUsersTable";
 import axios from "axios";
 import { API_URL } from "../../Consts";
 import { useParams } from "react-router-dom";
@@ -29,8 +29,12 @@ const AppUsers = () => {
   }, [appId]);
 
   return (
-    <div className="p-4 md:p-8">
-      {loading ? <AppUsersSkeleton /> : <AppUsersTable users={users} />}
+    <div className="w-full flex flex-col gap-8 py-6">
+      <div className="flex items-center justify-between">
+        <h1 className="text-3xl font-bold text-white">Users</h1>
+      </div>
+
+        {loading ? <AppUsersSkeleton /> : <AppUsersTable users={users} />}
     </div>
   );
 };

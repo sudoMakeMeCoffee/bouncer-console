@@ -1,6 +1,6 @@
 import { FaArrowLeft } from "react-icons/fa";
-import NewAppForm from "../../components/dashboard/NewAppForm";
 import { useNavigate } from "react-router-dom";
+import NewAppForm from "../../components/dashboard/new-app/NewAppForm";
 
 const NewApp = () => {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const NewApp = () => {
           <span>Back</span>
         </button>
 
-        <NewAppForm />
+        <NewAppForm/>
       </div>
     </div>
   );

@@ -3,9 +3,9 @@ import { CgClose } from "react-icons/cg";
 import { FcGoogle } from "react-icons/fc";
 import { GrGithub } from "react-icons/gr";
 import { RiErrorWarningLine } from "react-icons/ri";
-import useAuthFormStore from "../../store/useAuthFormStore";
+import useAuthFormStore from "../../../store/useAuthFormStore";
 import axios from "axios";
-import { API_URL } from "../../Consts";
+import { API_URL } from "../../../Consts";
 import { useParams } from "react-router-dom";
 
 const AppUserRegisterForm = () => {

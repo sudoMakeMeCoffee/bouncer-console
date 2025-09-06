@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { Outlet, useLocation, useMatch } from "react-router-dom";
-import Navbar from "../components/dashboard/Navbar";
-import TopNavTabs from "../components/dashboard/TopNavTabs";
-import AppTopNavTabs from "../components/dashboard/AppTopNavTabs"; // alternative top nav
+import Navbar from "../components/dashboard/global/Navbar";
+import TopNavTabs from "../components/dashboard/global/TopNavTabs";
+import AppTopNavTabs from "../components/dashboard/global/AppTopNavTabs";
 
 const DashboardLayout = () => {
   const location = useLocation();

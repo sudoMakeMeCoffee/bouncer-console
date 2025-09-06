@@ -21,7 +21,7 @@ const Overview = () => {
   if (!dashboardData) return <OverviewSkeleton />;
 
   return (
-    <div className="flex flex-col gap-10 w-full p-6">
+    <div className="flex flex-col gap-10 w-full py-6">
       <DashboardHeader />
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
