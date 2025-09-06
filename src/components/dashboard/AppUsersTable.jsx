@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import ProfileIcon from "../../assets/images/profile-icon.png";
 import axios from "axios";
 import { API_URL } from "../../Consts";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { formatDate } from "../../utils/utils";
+
 const AppUsersTable = () => {
   const { appId } = useParams();
   const [appUsers, setAppUsers] = useState([]);
@@ -11,18 +12,16 @@ const AppUsersTable = () => {
   const fetchAppUsers = () => {
     axios
       .get(`${API_URL}/client/app/user/${appId}`, { withCredentials: true })
-      .then((res) => {
-        console.log(res);
-        setAppUsers(res.data.data);
-      })
-      .catch((e) => console.log(e));
+      .then((res) => setAppUsers(res.data.data || []))
+      .catch((e) => console.error(e));
   };
 
   useEffect(() => {
     fetchAppUsers();
   }, []);
+
   return (
-    <table className="w-full text-left text-sm">
+    <table className="w-full text-left text-sm rounded-xl overflow-hidden">
       <thead className="bg-[#111113]">
         <tr className="font-semibold text-xs text-gray-400">
           <th className="p-3">User</th>
@@ -30,24 +29,40 @@ const AppUsersTable = () => {
         </tr>
       </thead>
 
-      <tbody className="">
-        {appUsers.map((user) => (
+      <tbody>
+        {appUsers.length === 0 ? (
           <tr className="bg-[#1E1E22]">
-            <td className="flex items-center gap-3 p-3">
-              <img
-                src={ProfileIcon}
-                alt=""
-                className="w-[45px] h-[45px] rounded-full"
-              />
-
-              <div className="flex flex-col">
-                <span className="text-white">{user.email}</span>
-                <span className="text-gray-400">{user.email}</span>
-              </div>
+            <td colSpan={2} className="text-center p-6 text-gray-400">
+              No users found.{" "}
+              <Link
+                to={`/dashboard/apps/${appId}/start`}
+                className="text-primary hover:underline"
+              >
+                Start adding users.
+              </Link>
             </td>
-            <td className="p-3">{formatDate(user.createdAt)}</td>
           </tr>
-        ))}
+        ) : (
+          appUsers.map((user) => (
+            <tr
+              key={user.id}
+              className="bg-[#1E1E22] hover:bg-[#2a2a2f] transition-colors"
+            >
+              <td className="flex items-center gap-3 p-3">
+                <img
+                  src={ProfileIcon}
+                  alt=""
+                  className="w-[45px] h-[45px] rounded-full"
+                />
+                <div className="flex flex-col">
+                  <span className="text-white">{user.email}</span>
+                  <span className="text-gray-400">{user.username || ""}</span>
+                </div>
+              </td>
+              <td className="p-3">{formatDate(user.createdAt)}</td>
+            </tr>
+          ))
+        )}
       </tbody>
     </table>
   );

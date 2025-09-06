@@ -43,7 +43,9 @@ const Overview = () => {
             <FaServer className="text-2xl text-blue-400" />
             <span className="text-lg font-semibold">Applications</span>
           </div>
-          <span className="text-3xl font-bold text-white">{dashboardData?.appsCount}</span>
+          <span className="text-3xl font-bold text-white">
+            {dashboardData?.appsCount}
+          </span>
           <Link
             to="/dashboard/apps"
             className="text-sm text-blue-400 hover:underline mt-auto"
@@ -77,16 +79,32 @@ const Overview = () => {
 
       {/* Apps Section */}
       <div>
-        <h2 className="text-2xl font-semibold text-white mb-4">
-          Your Applications
-        </h2>
+        <div className="flex items-end justify-between mb-4">
+          <h2 className="text-2xl font-semibold text-white">
+            Your Applications
+          </h2>
+          {dashboardData.appsCount > 0 && (
+            <Link className="text-xs text-blue-500" to={"/dashboard/apps"}>
+              View all
+            </Link>
+          )}
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {dashboardData.appsCount === 0 ? (
             <p className="text-gray-400">
-              You have no applications. <Link to="/dashboard/apps/new" className="text-blue-400 hover:underline">Create one now</Link>.
+              You have no applications.{" "}
+              <Link
+                to="/dashboard/apps/new"
+                className="text-blue-400 hover:underline"
+              >
+                Create one now
+              </Link>
+              .
             </p>
           ) : (
-            dashboardData?.clientApps?.map((app) => <AppCard key={app.id} app={app} />)
+            dashboardData?.clientApps?.map((app) => (
+              <AppCard key={app.id} app={app} />
+            ))
           )}
         </div>
       </div>
@@ -99,7 +117,6 @@ const Overview = () => {
         >
           <FaPlus /> Create New App
         </Link>
-        
       </div>
     </div>
   );

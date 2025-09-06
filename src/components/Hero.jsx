@@ -34,6 +34,15 @@ const Hero = () => {
             <button className="btn-primary btn-md" onClick={startBuilding}>
               Start building
             </button>
+
+            <Link
+              to="/docs"
+              className="text-xs font-semibold flex items-center gap-2"
+              onClick={startBuilding}
+            >
+              <span>Documentation</span>
+              <BsArrowRight className="" />
+            </Link>
           </div>
         </div>
       </div>

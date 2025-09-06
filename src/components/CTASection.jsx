@@ -1,7 +1,18 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useAuthFormStore from "../store/useAuthFormStore";
 
 const CTASection = () => {
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuthFormStore();
+
+  const startBuilding = () => {
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    } else {
+      navigate("/login?origin=/dashboard");
+    }
+  };
   return (
     <div className="bg-primary/20 py-20 flex flex-col items-center gap-6">
       <h2 className="text-4xl font-bold text-white text-center">
@@ -12,8 +23,11 @@ const CTASection = () => {
         and secure API keys.
       </p>
       <div className="flex gap-4">
-        <Link className="btn-primary btn-md">Start Free</Link>
-        <Link className="text-sm text-white flex gap-2 items-center hover:text-primary transition">
+        <button className="btn-primary btn-md" onClick={startBuilding}>Start Free</button>
+        <Link
+          to="/docs"
+          className="text-sm text-white flex gap-2 items-center hover:text-primary transition"
+        >
           Documentation
         </Link>
       </div>

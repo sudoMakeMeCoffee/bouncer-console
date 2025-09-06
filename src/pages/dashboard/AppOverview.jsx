@@ -53,10 +53,10 @@ const AppOverview = () => {
         </div>
         <div className="flex flex-col md:flex-row gap-3">
           <Link
-            to={`/dashboard/app/${app.id}/users/new`}
+            to={`/dashboard/apps/${app.id}/start`}
             className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition"
           >
-            + Create User
+            Get Started
           </Link>
         </div>
       </div>
@@ -136,7 +136,7 @@ const AppOverview = () => {
               </Link>
             )}
             <Link
-              to={`/dashboard/apps/${app.id}/users/new`}
+              to={`/dashboard/apps/${app.id}/start`}
               className="bg-blue-600 text-white px-3 py-1 rounded-md hover:bg-blue-700 transition text-sm"
             >
               + Add new User

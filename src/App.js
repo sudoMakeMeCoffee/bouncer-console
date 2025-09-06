@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "./App.css";
 import Home from "./pages/Home";
 import { useEffect, useState } from "react";
 import SignupForm from "./components/SignupForm";
@@ -9,8 +8,6 @@ import Verification from "./pages/Verification";
 import { Toaster } from "sonner";
 import InfoCard from "./components/InfoCard";
 import ProtectedRoute from "./components/ProtectedRoute";
-import axios from "axios";
-import { API_URL } from "./Consts";
 import useAuthStore from "./store/useAuthStore";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Apps from "./pages/dashboard/Apps";
@@ -33,7 +30,6 @@ function App() {
     useAuthStore();
 
   useEffect(() => {
-    document.documentElement.classList.add("dark");
     checkAuth(setIsAuthenticated, setUser, setLoading);
   }, []);
 

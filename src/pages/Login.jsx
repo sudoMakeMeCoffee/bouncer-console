@@ -21,7 +21,7 @@ const Login = () => {
     useAuthStore();
 
   const handleBack = () => {
-    navigate(-1);
+    navigate("/");
   };
 
   const [touched, setTouched] = useState(false);
