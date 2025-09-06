@@ -23,3 +23,8 @@ body {
     background: #060010;
     background: linear-gradient(5deg, rgba(6, 0, 16, 1) 15%, rgba(6, 0, 16, 0) 70%);
 }
+
+.gradient-bg-reverse {
+    background: #060010;
+    background: linear-gradient(5deg,  rgba(6, 0, 16, 0) 15%, rgba(6, 0, 16, 1) 70%);
+}

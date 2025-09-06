@@ -93,7 +93,7 @@ const LoginForm = () => {
         </p>
 
         {/* Social buttons */}
-        <div className="flex gap-4">
+        {/* <div className="flex gap-4">
           <button
             type="button"
             className="flex-1 bg-transparent border border-gray-700 rounded-lg py-3 flex items-center justify-center gap-2 hover:bg-gray-800 transition"
@@ -108,14 +108,14 @@ const LoginForm = () => {
             <GrGithub className="text-white" />
             <span className="text-gray-300 text-sm">Github</span>
           </button>
-        </div>
+        </div> */}
 
         {/* Divider */}
-        <div className="flex items-center gap-2">
+        {/* <div className="flex items-center gap-2">
           <div className="flex-grow border-t border-gray-700"></div>
           <span className="text-xs text-gray-500">or</span>
           <div className="flex-grow border-t border-gray-700"></div>
-        </div>
+        </div> */}
 
         {/* Error Alert */}
         {errors.apiError && (

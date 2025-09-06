@@ -26,7 +26,7 @@ const AppCard = ({ app }) => {
       {/* Stats / Badges */}
       <div className="flex items-center gap-4 text-xs text-gray-400 mt-2">
         <div className="flex items-center gap-1">
-          <FaUserAlt /> <span>{app.users.length || 0} Users</span>
+          <FaUserAlt /> <span>{app?.users?.length || 0} Users</span>
         </div>
         
         <div className="flex items-center gap-1">
