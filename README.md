@@ -1,8 +1,7 @@
 # Bouncer – AaaS Console
 
-[**🌐Live Demo**](https://bouncer-psi.vercel.app)
-
-[**🔗Backend Repo**](https://github.com/sudoMakeMeCoffee/bouncer-api)  
+🌐[**Live Demo**](https://bouncer-psi.vercel.app)
+🔗[**Backend Repo**](https://github.com/sudoMakeMeCoffee/bouncer-api)  
 
 The **Bouncer Authentication-as-a-Service (AaaS) Console** is the **frontend client** for managing apps, API keys, and authentication flows. This repository contains the **UI, layouts, pages, and API client** that power the admin experience.  
 
