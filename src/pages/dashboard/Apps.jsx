@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { API_URL } from "../../Consts";
 import AppCard from "../../components/dashboard/apps/AppCard";
 import AppsSkeleton from "../../components/skeletons/AppsSkeleton";
+import api from "../../api/axios";
 const Apps = () => {
   const [apps, setApps] = useState(null);
 
@@ -13,8 +12,8 @@ const Apps = () => {
   }, []);
 
   const getAllApps = () => {
-    axios
-      .get(`${API_URL}/client/app`, { withCredentials: true })
+    api
+      .get(`/client/app`, { withCredentials: true })
       .then((res) => setApps(res.data.data))
       .catch((e) => {
         console.log(e);

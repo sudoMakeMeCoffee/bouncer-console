@@ -1,12 +1,9 @@
 import { useEffect, useState, useCallback } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import profileIcon from "../../../assets/images/profile-icon.png"
-import { HiBars2 } from "react-icons/hi2";
 import clsx from "clsx";
-import axios from "axios";
-
-import { API_URL } from "../../../Consts";
 import useAuthStore from "../../../store/useAuthStore";
+import api from "../../../api/axios";
 
 const NAVBAR_HEIGHT = 64;
 
@@ -39,8 +36,8 @@ const Navbar = () => {
 
     if (match) {
       const appId = match[1];
-      axios
-        .get(`${API_URL}/client/app/${appId}`, { withCredentials: true })
+      api
+        .get(`/client/app/${appId}`, { withCredentials: true })
         .then((res) => setAppName(res.data.data.name))
         .catch((err) => console.log(err));
     } else {
@@ -49,8 +46,8 @@ const Navbar = () => {
   }, [location.pathname]);
 
   const handleLogout = () => {
-    axios
-      .post(`${API_URL}/auth/client/logout`, {}, { withCredentials: true })
+    api
+      .post(`auth/client/logout`, {}, { withCredentials: true })
       .then(() => (window.location.href = "/"))
       .catch((e) => console.log(e));
   };

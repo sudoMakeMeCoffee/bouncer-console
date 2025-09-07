@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { CgClose } from "react-icons/cg";
 import { RiErrorWarningLine } from "react-icons/ri";
-import { API_URL } from "../../../Consts";
-import axios from "axios";
-import { BiLeftArrow } from "react-icons/bi";
-import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import api from "../../../api/axios";
 
 const NewAppForm = () => {
   const navigate = useNavigate()
@@ -56,8 +52,8 @@ const NewAppForm = () => {
 
     setIsLoading(true);
 
-    axios
-      .post(API_URL + "/client/app", data, { withCredentials: true })
+    api
+      .post("/client/app", data, { withCredentials: true })
       .then((res) => {
         setIsLoading(false);
         toast.success(`Your App '${data.name}' created.`)

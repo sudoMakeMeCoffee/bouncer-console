@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useParams } from "react-router-dom";
-import { API_URL } from "../../Consts";
 import AppOverviewSkeleton from "../../components/skeletons/AppOverviewSkeleton";
 import AppInfoCard from "../../components/dashboard/app-overview/AppInfoCard";
 import AppHeader from "../../components/dashboard/app-overview/AppHeader";
 import RecentUsersTable from "../../components/dashboard/app-overview/RecentUsersTable";
 import UsersCard from "../../components/dashboard/app-overview/UsersCard";
 import ApiKeyCard from "../../components/dashboard/app-overview/AppKeyCard";
+import api from "../../api/axios";
 
 const AppOverview = () => {
   const { appId } = useParams();
@@ -16,7 +15,7 @@ const AppOverview = () => {
 
   const fetchApp = async () => {
     try {
-      const res = await axios.get(`${API_URL}/client/app/${appId}`, { withCredentials: true });
+      const res = await api.get(`/client/app/${appId}`, { withCredentials: true });
       setApp(res.data.data);
       setLoading(false);
     } catch (e) {

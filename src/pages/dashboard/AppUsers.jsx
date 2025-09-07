@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import AppUsersTable from "../../components/dashboard/app-users/AppUsersTable";
-import axios from "axios";
-import { API_URL } from "../../Consts";
 import { useParams } from "react-router-dom";
 import AppUsersSkeleton from "../../components/skeletons/AppUsersSkeleton";
+import api from "../../api/axios";
 const AppUsers = () => {
   const { appId } = useParams();
   const [users, setUsers] = useState([]);
@@ -12,7 +11,7 @@ const AppUsers = () => {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`${API_URL}/client/app/user/${appId}`, {
+      const res = await api.get(`/client/app/user/${appId}`, {
         withCredentials: true,
       });
       setUsers(res.data.data || []);

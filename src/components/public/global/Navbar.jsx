@@ -5,8 +5,7 @@ import clsx from "clsx";
 
 import useAuthFormStore from "../../../store/useAuthFormStore";
 import useAuthStore from "../../../store/useAuthStore";
-import axios from "axios";
-import { API_URL } from "../../../Consts";
+import api from "../../../api/axios";
 
 const NAVBAR_HEIGHT = 64;
 
@@ -34,8 +33,8 @@ const Navbar = () => {
 
   const handleLogout = () => {
     setLoading(true);
-    axios
-      .post(`${API_URL}/auth/client/logout`, {}, { withCredentials: true })
+    api
+      .post(`/auth/client/logout`, {}, { withCredentials: true })
       .then(() => {
         window.location.href = "/";
       })

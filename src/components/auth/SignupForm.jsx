@@ -5,9 +5,8 @@ import { GrGithub } from "react-icons/gr";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { FaRegUser, FaRegEnvelope, FaLock } from "react-icons/fa";
 import useAuthFormStore from "../../store/useAuthFormStore";
-import axios from "axios";
-import { API_URL } from "../../Consts";
 import { toast } from "sonner";
+import api from "../../api/axios";
 
 const SignupForm = () => {
   const { openLogin, closeSignup } = useAuthFormStore();
@@ -51,7 +50,7 @@ const SignupForm = () => {
     if (!formValidation()) return;
 
     setIsLoading(true);
-    axios.post(API_URL + "/auth/client/signup", data, { withCredentials: true })
+    api.post("/auth/client/signup", data, { withCredentials: true })
       .then(() => {
         setIsLoading(false);
         closeSignup();

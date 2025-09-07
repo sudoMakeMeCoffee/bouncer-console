@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ProfileIcon from "../../../assets/images/profile-icon.png";
-import { API_URL } from "../../../Consts";
 import { useParams, Link } from "react-router-dom";
 import { formatDate } from "../../../utils/utils";
 

@@ -1,9 +1,9 @@
-import axios from "axios";
-import { API_URL } from "../Consts";
+
+import api from "../api/axios";
 
 export const checkAuth = (setIsAuthenticated, setUser, setLoading) => {
-  axios
-    .post(API_URL + "/auth/client/check-auth", {}, { withCredentials: true })
+  api
+    .post("/auth/client/check-auth", {}, { withCredentials: true })
     .then((res) => {
       setIsAuthenticated(true);
       setUser(res.data.data);
@@ -13,14 +13,10 @@ export const checkAuth = (setIsAuthenticated, setUser, setLoading) => {
       if (error.response?.status === 401) {
         // Try refresh token
         try {
-          await axios.post(
-            API_URL + "/auth/client/refresh",
-            {},
-            { withCredentials: true }
-          );
+          await api.post("/auth/client/refresh", {}, { withCredentials: true });
           // Retry check-auth after refresh success
-          const retryRes = await axios.post(
-            API_URL + "/auth/client/check-auth",
+          const retryRes = await api.post(
+            "/auth/client/check-auth",
             {},
             { withCredentials: true }
           );

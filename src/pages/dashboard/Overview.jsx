@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import { API_URL } from "../../Consts";
 import { FaPlus, FaUsers, FaServer, FaChartLine } from "react-icons/fa";
 import OverviewSkeleton from "../../components/skeletons/OverviewSkeleton";
 import AppsSection from "../../components/dashboard/overview/AppsSection";
 import QuickAction from "../../components/dashboard/overview/QuickAction";
 import StatsCard from "../../components/dashboard/overview/StatsCard";
 import DashboardHeader from "../../components/dashboard/overview/DashboardHeader";
+import api from "../../api/axios";
 
 const Overview = () => {
   const [dashboardData, setDashboardData] = useState(null);
 
   useEffect(() => {
-    axios
-      .get(`${API_URL}/client/dashboard`, { withCredentials: true })
+    api
+      .get(`/client/dashboard`, { withCredentials: true })
       .then((res) => setDashboardData(res.data.data))
       .catch(() => setDashboardData({ appsCount: 0, clientApps: [] }));
   }, []);

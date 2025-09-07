@@ -5,9 +5,8 @@ import { RiErrorWarningLine } from "react-icons/ri";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { FaRegEnvelope, FaLock, FaUser } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { toast } from "sonner";
-import { API_URL } from "../../Consts";
+import api from "../../api/axios";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -61,7 +60,7 @@ const Signup = () => {
 
     setIsLoading(true);
     try {
-      const res = await axios.post(API_URL + "/auth/client/signup", data, {
+      const res = await api.post("/auth/client/signup", data, {
         withCredentials: true,
       });
       toast.success("Account created successfully! Please log in.");

@@ -5,11 +5,10 @@ import { RiErrorWarningLine } from "react-icons/ri";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { FaRegEnvelope, FaLock } from "react-icons/fa";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
 import { toast } from "sonner";
-import { API_URL } from "../../Consts";
 import { checkAuth } from "../../services/authSerive";
 import useAuthStore from "../../store/useAuthStore";
+import api from "../../api/axios";
 
 const Login = () => {
   const { origin } = useParams();
@@ -57,7 +56,7 @@ const Login = () => {
 
     setIsLoading(true);
     try {
-      const res = await axios.post(API_URL + "/auth/client/login", data, {
+      const res = await api.post("/auth/client/login", data, {
         withCredentials: true,
       });
       toast.success("Logged in successfully!");

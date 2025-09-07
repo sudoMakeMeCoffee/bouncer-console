@@ -4,9 +4,8 @@ import { FcGoogle } from "react-icons/fc";
 import { GrGithub } from "react-icons/gr";
 import { RiErrorWarningLine } from "react-icons/ri";
 import useAuthFormStore from "../../../store/useAuthFormStore";
-import axios from "axios";
-import { API_URL } from "../../../Consts";
 import { useParams } from "react-router-dom";
+import api from "../../../api/axios";
 
 const AppUserRegisterForm = () => {
   const {id} = useParams();
@@ -85,8 +84,8 @@ const AppUserRegisterForm = () => {
     if (!formValidation()) return;
 
     setIsLoading(true);
-    axios
-      .post(API_URL + "/client/app/user/register", {...data, clientAppId: id}, { withCredentials: true })
+    api
+      .post("/client/app/user/register", {...data, clientAppId: id}, { withCredentials: true })
       .then((res) => {
         setIsLoading(false);
         console.log(res)
