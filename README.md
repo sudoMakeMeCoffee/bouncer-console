@@ -1,7 +1,7 @@
 # Bouncer – AaaS Console
 
-[**Backend Repository:**](https://github.com/sudoMakeMeCoffee/bouncer-api)  
-[**Live Demo:**](https://bouncer-psi.vercel.app)  
+[**Backend Repository**](https://github.com/sudoMakeMeCoffee/bouncer-api)  
+[**Live Demo**](https://bouncer-psi.vercel.app)  
 
 The **Bouncer Authentication-as-a-Service (AaaS) Console** is the **frontend client** for managing apps, API keys, and authentication flows. This repository contains the **UI, layouts, pages, and API client** that power the admin experience.  
 
@@ -52,35 +52,10 @@ With Bouncer, developers can:
 
 ## 📸 Screenshots  
 
-- **Dashboard**  
   ![Dashboard snapshot](docs/screenshots/dashboard.png)  
 
-- **Login**  
   ![Login snapshot](docs/screenshots/login.png)  
 
-- **Docs**  
   ![Docs snapshot](docs/screenshots/start.png)  
 
----
-
-## 🚀 Getting Started (Development)  
-
-1. Install dependencies  
-   ```bash
-   npm install
-   ```  
-
-2. Start the development server  
-   ```bash
-   npm start
-   ```  
-
-3. Open your browser at [http://localhost:3000](http://localhost:3000).  
-
----
-
-## 🛠 Development Commands  
-
-- `npm start` – Run in development mode  
-- `npm test` – Launch test runner in watch mode  
-- `npm run build` – Build for production  
+ 
