@@ -1,77 +1,86 @@
-# Bouncer Console
+# Bouncer – AaaS Console
 
-A React single-page application (SPA) for the Bouncer admin console. Bootstrapped with Create React App and styled with Tailwind + CSS. This repository contains the web client, layouts, pages, and an API client used across the app.
+**Backend Repository:** [github.com/sudoMakeMeCoffee/bouncer-api](https://github.com/sudoMakeMeCoffee/bouncer-api)  
+**Live Demo:** [bouncer-psi.vercel.app](https://bouncer-psi.vercel.app)  
 
-Quick links
+The **Bouncer Authentication-as-a-Service (AaaS) Console** is the **frontend client** for managing apps, API keys, and authentication flows. Built with **React** (CRA) and styled using **Tailwind CSS**, this repository contains the **UI, layouts, pages, and API client** that power the admin experience.  
 
-- Root manifest: [public/index.html](public/index.html)
-- App entry: [`index`](src/index.js) ([src/index.js](src/index.js))
-- Main app component: [`App`](src/App.js) ([src/App.js](src/App.js))
-- Dashboard layout: [`DashboardLayout`](src/layouts/DashboardLayout.jsx) ([src/layouts/DashboardLayout.jsx](src/layouts/DashboardLayout.jsx))
-- Public layout: [`PublicLayout`](src/layouts/PublicLayout.jsx) ([src/layouts/PublicLayout.jsx](src/layouts/PublicLayout.jsx))
-- API helper: [src/api/axios.js](src/api/axios.js)
-- Package scripts & dependencies: [package.json](package.json)
-- This file: [README.md](README.md)
+![Dashboard snapshot](docs/screenshots/home.png)  
 
-Table of contents
+---
 
-- Project snapshot
-- Getting started
-- Development commands
-- Important files & structure
-- Deployment
-- Contributing
+## 🌐 About the Project  
 
-Project snapshot
+Bouncer provides **Authentication-as-a-Service (AaaS)** for developers who want to integrate authentication without building it from scratch.  
 
-- React SPA using Create React App
-- Layout-driven pages (dashboard / public / auth)
-- Reusable components under [src/components](src/components)
-- API wrapper in [src/api/axios.js](src/api/axios.js)
-- Tailwind + plain CSS for styling (see [tailwind.config.js](tailwind.config.js) and [src/index.css](src/index.css))
+With Bouncer, developers can:  
+- **Register applications** and obtain API keys  
+- **Authenticate users** within their applications  
+- **Manage tokens** (issue, validate, and revoke)  
+- **Leverage the console** to manage apps and track activity  
 
-Getting started (development)
+### 🔑 Key Features  
 
-1. Install dependencies
-   ```sh
+- **App Registration**: Create and manage apps directly in the console  
+- **API Key Management**: Securely provision unique keys for each app  
+- **Authentication Flows** (via API):  
+  - Register new users  
+  - Log in and obtain access tokens  
+  - Log out and revoke sessions  
+  - Verify authentication state  
+- **Dashboard Console**: Manage apps, users, and monitor API usage  
+- **Frontend Architecture**:  
+  - React SPA  
+  - Layout-driven pages (Dashboard / Public / Auth)  
+  - Tailwind + custom CSS styling  
+  - Reusable components for scalability  
+
+---
+
+## 📂 Quick Links  
+
+- Root manifest: [public/index.html](public/index.html)  
+- App entry: [src/index.js](src/index.js)  
+- Main component: [src/App.js](src/App.js)  
+- Dashboard layout: [src/layouts/DashboardLayout.jsx](src/layouts/DashboardLayout.jsx)  
+- Public layout: [src/layouts/PublicLayout.jsx](src/layouts/PublicLayout.jsx)  
+- API helper: [src/api/axios.js](src/api/axios.js)  
+- Scripts & dependencies: [package.json](package.json)  
+- Documentation: [README.md](README.md)  
+
+---
+
+## 📸 Screenshots  
+
+- **Dashboard**  
+  ![Dashboard snapshot](docs/screenshots/dashboard.png)  
+
+- **Login**  
+  ![Login snapshot](docs/screenshots/login.png)  
+
+- **Sign Up**  
+  ![SignUp snapshot](docs/screenshots/signup.png)  
+
+---
+
+## 🚀 Getting Started (Development)  
+
+1. Install dependencies  
+   ```bash
    npm install
-   ```
-2. Start the development server
-   ```sh
+   ```  
+
+2. Start the development server  
+   ```bash
    npm start
-   ```
-3. Open your browser and go to [http://localhost:3000](http://localhost:3000) to see the app in action.
+   ```  
 
-Development commands
+3. Open your browser at [http://localhost:3000](http://localhost:3000).  
 
-- `npm start`: Runs the app in development mode.
-- `npm test`: Launches the test runner in interactive watch mode.
-- `npm run build`: Builds the app for production.
-- `npm run eject`: Ejects the app from Create React App setup (one-way operation).
+---
 
-Important files & structure
+## 🛠 Development Commands  
 
-- `public/index.html`: Root manifest
-- `src/index.js`: App entry
-- `src/App.js`: Main app component
-- `src/layouts/DashboardLayout.jsx`: Dashboard layout
-- `src/layouts/PublicLayout.jsx`: Public layout
-- `src/api/axios.js`: API helper
-- `package.json`: Package scripts & dependencies
-- `README.md`: This file
-
-Deployment
-For deployment instructions, see the [Create React App documentation](https://facebook.github.io/create-react-app/docs/deployment).
-
-Contributing
-We welcome contributions! Please read our [contributing guidelines](CONTRIBUTING.md) for more information on how to get involved.
-
-Snapshots / Screenshots
-
-Screenshots help reviewers and users quickly see the UI.
-
-- Dashboard
-  ![Dashboard snapshot](docs/screenshots/dashboard.png)
-
-- Login
-  ![Login snapshot](docs/screenshots/login.png)
+- `npm start` – Run in development mode  
+- `npm test` – Launch test runner in watch mode  
+- `npm run build` – Build for production  
