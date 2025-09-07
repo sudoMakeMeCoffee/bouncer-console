@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dracula } from "react-syntax-highlighter/dist/esm/styles/prism";
 
-const ApiCodeExample = ({ fetchCode, axiosCode, responseCode }) => {
-  const [activeTab, setActiveTab] = useState("fetch");
+const ApiCodeExample = ({ jsCode, tsCode, responseCode }) => {
+  const [activeTab, setActiveTab] = useState("js");
 
   const getCode = () => {
     switch (activeTab) {
-      case "fetch":
-        return fetchCode;
-      case "axios":
-        return axiosCode;
+      case "js":
+        return jsCode;
+      case "ts":
+        return tsCode;
       case "response":
         return responseCode;
       default:
@@ -22,28 +22,28 @@ const ApiCodeExample = ({ fetchCode, axiosCode, responseCode }) => {
     <div className="w-full bg-[#1E1E2F] rounded-2xl shadow-lg overflow-hidden">
       {/* Tabs */}
       <div className="flex border-b border-gray-700">
-        {fetchCode && (
+        {jsCode && (
           <button
             className={`flex-1 px-4 py-2 text-sm font-medium ${
-              activeTab === "fetch"
+              activeTab === "js"
                 ? "bg-gray-800 text-blue-400"
                 : "bg-[#1E1E2F] text-gray-400 hover:text-white"
             }`}
-            onClick={() => setActiveTab("fetch")}
+            onClick={() => setActiveTab("js")}
           >
-            Fetch
+            Javascript
           </button>
         )}
-        {axiosCode && (
+        {tsCode && (
           <button
             className={`flex-1 px-4 py-2 text-sm font-medium ${
-              activeTab === "axios"
+              activeTab === "ts"
                 ? "bg-gray-800 text-blue-400"
                 : "bg-[#1E1E2F] text-gray-400 hover:text-white"
             }`}
-            onClick={() => setActiveTab("axios")}
+            onClick={() => setActiveTab("ts")}
           >
-            Axios
+            TypeScript
           </button>
         )}
         {responseCode && (

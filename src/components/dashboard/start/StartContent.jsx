@@ -18,8 +18,8 @@ const StartContent = ({ doc }) => (
     <div className="mb-6">
       <h2 className="text-xl font-semibold text-white mb-3">Example Usage</h2>
       <ApiCodeExample
-        fetchCode={doc.fetchCode}
-        axiosCode={doc.axiosCode}
+        jsCode={doc.jsCode}
+        tsCode={doc.tsCode}
         responseCode={doc.response}
       />
     </div>
