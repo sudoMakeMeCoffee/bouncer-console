@@ -3,7 +3,7 @@
 **Backend Repository:** [github.com/sudoMakeMeCoffee/bouncer-api](https://github.com/sudoMakeMeCoffee/bouncer-api)  
 **Live Demo:** [bouncer-psi.vercel.app](https://bouncer-psi.vercel.app)  
 
-The **Bouncer Authentication-as-a-Service (AaaS) Console** is the **frontend client** for managing apps, API keys, and authentication flows. Built with **React** (CRA) and styled using **Tailwind CSS**, this repository contains the **UI, layouts, pages, and API client** that power the admin experience.  
+The **Bouncer Authentication-as-a-Service (AaaS) Console** is the **frontend client** for managing apps, API keys, and authentication flows. This repository contains the **UI, layouts, pages, and API client** that power the admin experience.  
 
 ![Dashboard snapshot](docs/screenshots/home.png)  
 
@@ -58,8 +58,8 @@ With Bouncer, developers can:
 - **Login**  
   ![Login snapshot](docs/screenshots/login.png)  
 
-- **Sign Up**  
-  ![SignUp snapshot](docs/screenshots/signup.png)  
+- **Docs**  
+  ![Docs snapshot](docs/screenshots/start.png)  
 
 ---
 
