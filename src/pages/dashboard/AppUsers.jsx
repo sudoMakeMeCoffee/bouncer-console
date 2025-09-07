@@ -14,7 +14,8 @@ const AppUsers = () => {
       const res = await api.get(`/client/app/user/${appId}`, {
         withCredentials: true,
       });
-      setUsers(res.data.data || []);
+      console.log(res.data)
+      setUsers(res.data.data);
     } catch (e) {
       console.error(e);
       setUsers([]);

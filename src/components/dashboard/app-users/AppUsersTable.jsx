@@ -4,7 +4,7 @@ import ProfileIcon from "../../../assets/images/profile-icon.png";
 import { useParams, Link } from "react-router-dom";
 import { formatDate } from "../../../utils/utils";
 
-const AppUsersTable = ({ appUsers }) => {
+const AppUsersTable = ({ users }) => {
   const { appId } = useParams();
 
   return (
@@ -17,7 +17,7 @@ const AppUsersTable = ({ appUsers }) => {
       </thead>
 
       <tbody>
-        {appUsers?.length === 0 || !appUsers ? (
+        {users?.length === 0 || !users ? (
           <tr className="bg-[#1E1E22]">
             <td colSpan={2} className="text-center p-6 text-gray-400">
               No users found.{" "}
@@ -30,7 +30,7 @@ const AppUsersTable = ({ appUsers }) => {
             </td>
           </tr>
         ) : (
-          appUsers?.map((user) => (
+          users?.map((user) => (
             <tr
               key={user.id}
               className="bg-[#1E1E22] hover:bg-[#2a2a2f] transition-colors"
