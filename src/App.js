@@ -80,7 +80,7 @@ function App() {
               <Route path="/dashboard/apps/new" element={<NewApp />} />
             </Route>
           </Routes>
-          <Toaster richColors position="top-right" />
+          <Toaster richColors position="top-center" />
         </div>
 
         {isSignupOpen && (

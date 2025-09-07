@@ -63,7 +63,10 @@ const Signup = () => {
       const res = await api.post("/auth/client/signup", data, {
         withCredentials: true,
       });
-      toast.success("Account created successfully! Please log in.");
+      toast.info("Account created successfully!", {
+        description:
+          "Follow the link sent to your email or Enter credentials to log in",
+      });
       navigate("/login");
       console.log(res);
     } catch (err) {

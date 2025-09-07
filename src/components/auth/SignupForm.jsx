@@ -13,35 +13,62 @@ const SignupForm = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState({ username: "", email: "", password: "" });
-  const [touched, setTouched] = useState({ username: false, email: false, password: false });
-  const [errors, setErrors] = useState({ apiError: "", username: "", email: "", password: "" });
+  const [touched, setTouched] = useState({
+    username: false,
+    email: false,
+    password: false,
+  });
+  const [errors, setErrors] = useState({
+    apiError: "",
+    username: "",
+    email: "",
+    password: "",
+  });
 
   const formValidation = () => {
     let isValid = true;
     const newErrors = { apiError: "", username: "", email: "", password: "" };
 
     if (touched.username) {
-      if (!data.username) { newErrors.username = "Username is required."; isValid = false; }
-      else if (data.username.length < 3) { newErrors.username = "Username must be at least 3 characters."; isValid = false; }
+      if (!data.username) {
+        newErrors.username = "Username is required.";
+        isValid = false;
+      } else if (data.username.length < 3) {
+        newErrors.username = "Username must be at least 3 characters.";
+        isValid = false;
+      }
     }
 
     if (touched.email) {
-      if (!data.email) { newErrors.email = "Email is required."; isValid = false; }
-      else if (!/\S+@\S+\.\S+/.test(data.email)) { newErrors.email = "Email format is invalid."; isValid = false; }
+      if (!data.email) {
+        newErrors.email = "Email is required.";
+        isValid = false;
+      } else if (!/\S+@\S+\.\S+/.test(data.email)) {
+        newErrors.email = "Email format is invalid.";
+        isValid = false;
+      }
     }
 
     if (touched.password) {
-      if (!data.password) { newErrors.password = "Password is required."; isValid = false; }
-      else if (data.password.length < 8) { newErrors.password = "Password must be at least 8 characters."; isValid = false; }
+      if (!data.password) {
+        newErrors.password = "Password is required.";
+        isValid = false;
+      } else if (data.password.length < 8) {
+        newErrors.password = "Password must be at least 8 characters.";
+        isValid = false;
+      }
     }
 
     setErrors(newErrors);
     return isValid;
   };
 
-  useEffect(() => { formValidation(); }, [data, touched]);
+  useEffect(() => {
+    formValidation();
+  }, [data, touched]);
 
-  const handleChange = (e) => setData({ ...data, [e.target.name]: e.target.value });
+  const handleChange = (e) =>
+    setData({ ...data, [e.target.name]: e.target.value });
   const handleBlur = (e) => setTouched({ ...touched, [e.target.name]: true });
 
   const handleSubmit = (e) => {
@@ -50,12 +77,16 @@ const SignupForm = () => {
     if (!formValidation()) return;
 
     setIsLoading(true);
-    api.post("/auth/client/signup", data, { withCredentials: true })
+    api
+      .post("/auth/client/signup", data, { withCredentials: true })
       .then(() => {
         setIsLoading(false);
         closeSignup();
         openLogin();
-        toast.info("A verification link has been sent to your email. Please check your inbox.");
+        toast.info("Account created successfully!", {
+          description:
+            "Follow the link sent to your email or Enter credentials to log in",
+        });
       })
       .catch((err) => {
         setIsLoading(false);
@@ -71,7 +102,6 @@ const SignupForm = () => {
       <form
         onSubmit={handleSubmit}
         className="w-full h-full md:h-auto md:max-w-md  bg-[#1e1e23] md:rounded-2xl shadow-xl p-6 md:p-8 border border-gray-800 space-y-6 relative"
-      
       >
         {/* Close button */}
         <button
@@ -83,7 +113,9 @@ const SignupForm = () => {
         </button>
 
         {/* Title */}
-        <h1 className="text-2xl font-bold text-center text-white">Create Account ✨</h1>
+        <h1 className="text-2xl font-bold text-center text-white">
+          Create Account ✨
+        </h1>
         <p className="text-center text-gray-400 text-sm">
           Sign up to start your journey
         </p>
@@ -204,9 +236,14 @@ const SignupForm = () => {
 
         <p className="text-[10px] text-gray-500 text-center">
           By signing up, you agree to our{" "}
-          <span className="text-[#00b3ff86] cursor-pointer">Terms of Service</span>{" "}
+          <span className="text-[#00b3ff86] cursor-pointer">
+            Terms of Service
+          </span>{" "}
           and{" "}
-          <span className="text-[#00b3ff86] cursor-pointer">Privacy Policy</span>.
+          <span className="text-[#00b3ff86] cursor-pointer">
+            Privacy Policy
+          </span>
+          .
         </p>
       </form>
     </div>
